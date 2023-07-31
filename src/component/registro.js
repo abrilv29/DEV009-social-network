@@ -76,6 +76,8 @@ export function registroView() {
   <p id="6-letters" style="display: none"> La contraseña debe contener al menos 6 caracteres </p> 
   <p id="7-letters" style="display: none"> Correo o contraseña inválidos </p> `;
   console.log(validaciones);
+
+/* -------------------------- Registro usuarios y validacion de campos ------------------------- */
   formRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -112,6 +114,7 @@ export function registroView() {
     window.dispatchEvent(new PopStateEvent('popstate'));
     window.location.reload();
   });
+  /* -------------------------- Login con cuenta de Google ------------------------- */
 
   return container;
 }
