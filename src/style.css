@@ -190,7 +190,9 @@ body {
 
 }
 #error-container{
-    color: #f5f5f5;
+    color: #ec4545;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 /*----------------- Responsive design ------------------------*/
