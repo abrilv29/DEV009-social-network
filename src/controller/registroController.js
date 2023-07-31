@@ -1,6 +1,6 @@
-import { showError } from '../utils/showError.js';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { showError } from '../utils/showError.js';
 import { app } from '../lib/config-firebase.js';
 
 /* ---------------------Registro de Usuarios Nuevos----------------------------- */
