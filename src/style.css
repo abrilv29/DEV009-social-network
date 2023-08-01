@@ -31,7 +31,7 @@ body {
   /* Centra los elementos verticalmente en el contenedor */
 }
 
-/*-------------------------Contenedor Formulario---------------------------*/
+/*-------------------------Contenedor Formulario - Registro Usuarios ---------------------------*/
 .container {
   background-color: #000;
   width: 90%;
@@ -112,7 +112,6 @@ body {
 
 .estilos-icono {
   background-color: #232526;
-  ;
   width: 55px;
   height: 55px;
   text-align: center;
@@ -201,7 +200,6 @@ body {
   .img-logo {
     content: url('img/logo-feed.png');
     width: 250px;
-    height: 70px;
   }
 
   .container {
@@ -216,28 +214,12 @@ body {
     width: 90%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media (min-width: 320px) and (max-width: 480px) {
+    .form-registro {
+        width: 90%;
+        padding: 10px;
+    }
+}
 /*-----------------------------Pagina principal (LOGIN)---------------------------------------------*/
 
 .mimain {
@@ -284,7 +266,6 @@ body {
   font-size: 16px;
   margin: 5px;
 }
-
 .Registrate {
   color: #BB377D;
   font-size: 16px;
@@ -292,10 +273,8 @@ body {
   margin: 5px;
   cursor: pointer;
 }
-
-
-.btnIniciarSesion {
-  width: 80%;
+.btnLogin {
+  width: 70%;
   height: 50px;
   margin: 10px;
   font-size: 20px;
@@ -306,7 +285,7 @@ body {
   border-radius: 20px;
 }
 
-.btnIniciarSesion:hover {
+.btnLogin:hover {
   cursor: pointer;
   background: #BB377D;
   box-shadow: 0px 4px 35px -5px #BB377D;
@@ -344,6 +323,32 @@ body {
   font-size: 12px;
   margin-top: 17px;
 }
+.btnGoogle {
+  width: 70%;
+  height: 50px;
+  padding: 10px;
+  font-size: 20px;
+  color: #f5f5f5;
+  font-weight: bolder;
+  background-color: #e2a9c9;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnGoogle img {
+  margin: 10px;
+}
+
+.btnGoogle:hover {
+  cursor: pointer;
+  background: #54cbe0;
+  box-shadow: 0px 4px 35px -5px #54cbe0;
+  cursor: pointer;
+
+}
 
 /*----------------- Responsive design (LOGIN)------------------------*/
 
@@ -351,20 +356,30 @@ body {
   .img-logo1 {
     content: url('img/logo-feed.png');
     width: 250px;
+    margin: -67px;
   }
 
   .mimain {
     grid-template-columns: 1fr;
-
   }
+  
+#formRegistro1 {
+    width: 90%;
+    margin: 137px;
+    overflow: hidden;
+
 }
-
-
-
-
-
-
-
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    #formRegistro1 {
+        width: 90%;
+        margin: 110px;
+        padding: 10px;
+        overflow: hidden;
+    
+    }
+    
+  }
 /*----------------- Feed ------------------------*/
 
 .container_feed {
@@ -458,14 +473,14 @@ body {
     margin: 10px 0px 0 10px;
 }
 
-button {
+/* {
     width: 95%;
     height: auto;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
     border: none;
-}
+}*/
 
 .button_publicar {
     width: 25%;

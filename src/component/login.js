@@ -1,4 +1,6 @@
+/* eslint-disable no-use-before-define */
 import { createElement } from '../utils/utils';
+import { loginUser } from '../controller/loginController';
 
 export function loginView() {
   const content = document.createElement('main');
@@ -20,13 +22,15 @@ export function loginView() {
   const title = createElement('p', 'title1', formElement);
   title.innerHTML = 'Signin';
 
-  // input text nombre
-  const nameDiv = createElement('div', 'input-iconos', formElement);
-  const nameIcono = createElement('p', 'estilos-icono', nameDiv);
-  nameIcono.innerHTML = '<i class="fa-solid fa-user"></i>';
-  const nameText = createElement('input', 'estilos-input', nameDiv);
-  nameText.setAttribute('type', 'text');
-  nameText.placeholder = 'Nombre de Usuario';
+  // input text email
+  const emailDiv = createElement('div', 'input-iconos', formElement);
+  const emailIcono = createElement('p', 'estilos-icono', emailDiv);
+  emailIcono.innerHTML = '<i class="fa-solid fa-envelope"></i>';
+  const emailText = createElement('input', 'estilos-input', emailDiv);
+  emailText.setAttribute('type', 'email');
+  emailText.setAttribute('name', 'email');
+  emailText.setAttribute('required', ''); // campo es obligatorio
+  emailText.placeholder = 'Correo Electronico';
 
   // input text password
   const passDiv = createElement('div', 'input-iconos', formElement);
@@ -37,9 +41,9 @@ export function loginView() {
   passText.placeholder = 'Contraseña';
 
   // boton de iniciar sesion
-  const btnIniciarSesion = createElement('button', 'btnIniciarSesion', formElement);
-  btnIniciarSesion.setAttribute('type', 'submit');
-  btnIniciarSesion.innerHTML = 'Iniciar Seción <i class="fa-solid fa-right-to-bracket"></i>';
+  const btnLogin = createElement('button', 'btnLogin', formElement);
+  btnLogin.setAttribute('type', 'submit');
+  btnLogin.innerHTML = 'Iniciar Seción <i class="fa-solid fa-right-to-bracket"></i>';
 
   // navegacion a la pagina de registro
   const mensajeNoTienesCuenta = createElement('p', 'mensajeNoTienesCuenta', formElement);
@@ -59,12 +63,19 @@ export function loginView() {
     window.dispatchEvent(new PopStateEvent('popstate'));
     window.location.reload();
   });
-
-  btnIniciarSesion.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/feed`);
-    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+  /* -------------------------------Login Formulario--------------------------------- */
+  formElement.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = emailText.value;
+    const password = passText.value;
+    loginUser(email, password)
+      .then(() => {
+      //  Redireccionamiento del usuario al feeds
+        window.history.pushState({}, '', `${window.location.origin}/feed`);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }).catch(() => {
+        document.getElementById('messageError').style.display = 'block';
+      });
   });
 
   return content;

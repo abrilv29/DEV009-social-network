@@ -1,10 +1,9 @@
 import { createElement } from '../utils/utils';
 
 export function feedView() {
-
-  //Seccion container feed
+  // Seccion container feed
   const sectionFeed = createElement('section', 'container_feed', '');
-  //Seccion header feed
+  // Seccion header feed
   const sectionHeader = createElement('section', 'section_header', sectionFeed);
   const divLogo = createElement('div', 'div_feed_logo', sectionHeader);
   const imagenLogo = createElement('img', 'feed_logo', divLogo);
@@ -13,22 +12,22 @@ export function feedView() {
   const iconoPerfil = createElement('button', 'icono_perfil', divIcono);
   iconoPerfil.innerHTML = '<i class="fa-solid fa-user" style="color: #ffffff;"></i>';
 
-  //Seccion publicar post
+  // Seccion publicar post
   const sectionPost = createElement('section', 'section_post', sectionFeed);
-  const mensajeBienvenida = createElement ('h2', 'mensaje_bienvenida', sectionPost);
+  const mensajeBienvenida = createElement('h2', 'mensaje_bienvenida', sectionPost);
   mensajeBienvenida.innerHTML = 'Bienvenid@ Pepito Perez';
   const divPost = createElement('div', 'post', sectionPost);
   const divInput = createElement('div', 'section_text', divPost);
   const input = createElement('input', 'feed_new_post', divInput);
   input.setAttribute('type', 'text');
   input.setAttribute('placeholder', 'Escribe algo...');
-  const button = createElement ('button', 'boton_camara', divInput);
+  const button = createElement('button', 'boton_camara', divInput);
   button.innerHTML = '<i class="fa-solid fa-camera"></i>';
   const divButtons = createElement('div', 'section_buttons', divPost);
   const buttonPublicar = createElement('button', 'button_publicar', divButtons);
   buttonPublicar.textContent = 'Publicar';
 
-  //Seccion publicaciones
+  // Seccion publicaciones
   const sectionPublicaciones = createElement('section', 'section_publicaciones', sectionFeed);
   const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
   const name = createElement('p', 'name_user', divPublicacion);
@@ -45,8 +44,6 @@ export function feedView() {
   like.innerHTML = '<i class="fa-regular fa-heart"></i>';
   const contador = createElement('label', 'contador_like', sectionInteracion);
   contador.innerHTML = '0';
-
-
 
   return sectionFeed;
 }

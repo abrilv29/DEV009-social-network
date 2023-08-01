@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createElement } from '../utils/utils';
 import { conexionUser } from '../controller/registroController';
 
@@ -77,7 +78,7 @@ export function registroView() {
   <p id="7-letters" style="display: none"> Correo o contraseña inválidos </p> `;
   console.log(validaciones);
 
-/* -------------------------- Registro usuarios y validacion de campos ------------------------- */
+  /* -------------------------- Registro usuarios y validacion de campos ------------------------- */
   formRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
 
@@ -115,6 +116,20 @@ export function registroView() {
     window.location.reload();
   });
   /* -------------------------- Login con cuenta de Google ------------------------- */
+  /* Al momento de dar clic en el icono Google se dispara la funcion de Google LoginWithGoogle
+    Se encuentra en login.controller.js */
+  btnGoogle.addEventListener('click', async () => {
+    btnGoogle.disabled = true;
+    // Inicio de sesion con google
+    /* loginWithGoogle()
+    .then(() => {
+      //  Redireccionamiento del usuario al feeds
+      window.history.pushState({}, '', `${window.location.origin}/feed`);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }).catch(() => {
+      document.getElementById('messageError').style.display = 'block';
+    }); */
+  });
 
   return container;
 }
