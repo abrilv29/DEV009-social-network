@@ -56,6 +56,11 @@ export function loginView() {
   const btnGoogle = createElement('button', 'btnGoogle', formElement);
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
 
+  const userNameElement = createElement('p', '', formElement);
+  userNameElement.id = 'userNameElement';
+
+
+
   /* -------------------------------Navegacion vista registro--------------------------------- */
   registrate.addEventListener('click', () => {
     window.history.pushState({}, '', `${window.location.origin}/registro`);

@@ -5,7 +5,7 @@ import {
 } from 'firebase/auth';
 import { app } from '../lib/config-firebase.js';
 
-//const conexioBD = getFirestore(app);
+// const conexioBD = getFirestore(app);
 
 export const loginUser = (email, password) => {
   const auth = getAuth(app);
