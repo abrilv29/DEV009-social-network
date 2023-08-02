@@ -6,10 +6,15 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background: rgb(88, 76, 106);
   background: linear-gradient(0deg, rgba(88, 76, 106, 1) 0%, rgba(47, 44, 33, 1) 49%);
   font-family: "Poppins", sans-serif;
+  height: 100%;
 }
 
 /*-------------------------Contenedor Principal---------------------------*/
@@ -19,15 +24,16 @@ body {
   margin: auto;
   width: 90%;
   max-width: 1600px;
-  overflow: hidden;
-  height: 100vh;
+  /* overflow: hidden;
+  height: 100vh; */
+  height: 100%;
   /* Ajusta la altura del contenedor principal, en este caso, ocupa toda la altura visible del viewport */
   display: grid;
   grid-template-rows: 1fr;
   /* Una fila con altura flexible */
   justify-items: center;
   /* Centra los elementos horizontalmente en el contenedor */
-  align-items: center;
+  /* align-items: center; */
   /* Centra los elementos verticalmente en el contenedor */
 }
 
@@ -154,6 +160,7 @@ body {
   background-color: #e2a9c9;
   border: none;
   border-radius: 20px;
+  align-items: center;
 }
 
 .btnRegistro:hover {
@@ -283,6 +290,7 @@ body {
   background-color: #e2a9c9;
   border: none;
   border-radius: 20px;
+  align-items: center;
 }
 
 .btnLogin:hover {
@@ -473,14 +481,15 @@ body {
     margin: 10px 0px 0 10px;
 }
 
-/* {
+/*---Pendiente por revisar estilos en button---*/
+button {
     width: 95%;
     height: auto;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
     border: none;
-}*/
+}
 
 .button_publicar {
     width: 25%;
@@ -504,47 +513,19 @@ body {
     height: auto;
     background-color: #4B4355;
     border-radius: 8px;
-    margin: 25px 0 10px 0;
-   
-    /* flex-direction: column; */
+    display: grid;
 }
+
 
 .container_publicacion {
     display: grid;
 }
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-    /* grid-template-rows: 200px 100px 30px;
-    grid-template-areas: 
-        'name_user' 'name_user' 'name_user' 'name_user'
-        'textarea_publicacion' 'textarea_publicacion' 'textarea_publicacion' 'textarea_publicacion'
-        'icono_edit' 'icono_delete' 'icono_like' 'contador_like';
-}
-
-.container_publicacion .name_user {
-    grid-area: name_user;
-}
-
-.textarea_publicacion {
-    font-size: 16px;
-    color: black;
-
-}
-
-.container_publicacion .icono_edit {
-    grid-area: icono_edith;
-}
-
-.container_publicacion .icono_delete {
-    grid-area: icono_delete;
-} */
 
 section.like_edit_delete {
     width: 100%;
     height: auto;
     display: grid;
     grid-template-columns: 10% 10% 10% 10%;
-   /* border: 2px solid red; */
-
 }
 
 button.icono_like,
@@ -566,5 +547,17 @@ button.icono_delete {
     width: 22px;
     color:  #C9C7CC;
     font-size: 23px;
+}
+
+/*--------Responsive (Feed)--------*/
+
+@media (max-width: 768px) {
+  .feed_logo{
+    width: 200px;
+    height: 50px;
+  }
+  .icono_perfil{
+    font-size: 35px;
+  }
 }
 
