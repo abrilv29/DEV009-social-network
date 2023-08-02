@@ -3,36 +3,19 @@ import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { showError } from '../utils/showError.js';
 import { app } from '../lib/config-firebase.js';
 
-/* ---------------------Registro de Usuarios Nuevos----------------------------- */
-export const newUser = (email, password) => {
-  const auth = getAuth(app);
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      // ..
-    });
-};// newUser
-
 /* ---------------------Funcion para Registrar Usuarios Nuevos----------------------------- */
 // Inicializar Cloud Firestore y obtener una referencia al servicio de Base de datos
 // Perfil del la vista post, usando la cuenta de google
 const conexioBD = getFirestore(app);
 
 export const addUser = (nombre, email) => {
-  addDoc(collection(conexioBD, 'usuarios'), {
+  addDoc(collection(conexioBD, 'user'), {
     name: nombre,
     email,
   });
   console.log(addUser);
 };
-
+/* ---------------------Registro de Usuarios Nuevos----------------------------- */
 // Registro de usuarios usando el formulario de registro
 
 export const conexionUser = (nombre, email, password) => {
