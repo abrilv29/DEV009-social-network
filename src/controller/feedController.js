@@ -8,7 +8,7 @@ const db = getFirestore(app)
 
 export async function guardarPost(datos) {
     try {
-        const documento = await addDoc(collection(db, "post"), datos);
+        const documento = await addDoc(collection(db, "posts"), datos);
 
         console.log(datos);
         console.log("Document written with ID: ", documento.id);
@@ -21,7 +21,7 @@ export async function guardarPost(datos) {
 
 export async function traerpost() {
     console.log('Funcion traer');
-    const todosLosPosts =  query(collection(db, "post"), orderBy("created_date", "desc"));
+    const todosLosPosts =  query(collection(db, "posts"), orderBy("created_date", "desc"));
     const documentos = await getDocs(todosLosPosts);
     return documentos
 }
