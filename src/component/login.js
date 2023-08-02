@@ -68,14 +68,7 @@ export function loginView() {
     e.preventDefault();
     const email = emailText.value;
     const password = passText.value;
-    loginUser(email, password)
-      .then(() => {
-      //  Redireccionamiento del usuario al feeds
-        window.history.pushState({}, '', `${window.location.origin}/feed`);
-        window.dispatchEvent(new PopStateEvent('popstate'));
-      }).catch(() => {
-        document.getElementById('messageError').style.display = 'block';
-      });
+    loginUser(email, password);
   });
 
   return content;
