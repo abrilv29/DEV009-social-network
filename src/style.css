@@ -6,15 +6,9 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
-}
-
 body {
-  background: rgb(88, 76, 106);
   background: linear-gradient(0deg, rgba(88, 76, 106, 1) 0%, rgba(47, 44, 33, 1) 49%);
   font-family: "Poppins", sans-serif;
-  height: 100%;
 }
 
 /*-------------------------Contenedor Principal---------------------------*/
@@ -24,16 +18,14 @@ body {
   margin: auto;
   width: 90%;
   max-width: 1600px;
-  /* overflow: hidden;
-  height: 100vh; */
-  height: 100%;
+  height: 100vh; 
   /* Ajusta la altura del contenedor principal, en este caso, ocupa toda la altura visible del viewport */
   display: grid;
   grid-template-rows: 1fr;
   /* Una fila con altura flexible */
   justify-items: center;
   /* Centra los elementos horizontalmente en el contenedor */
-  /* align-items: center; */
+  align-items: center;
   /* Centra los elementos verticalmente en el contenedor */
 }
 
@@ -41,7 +33,7 @@ body {
 .container {
   background-color: #000;
   width: 90%;
-  height: 700px;
+  height: 650px;
   /* Ajusta la altura del contenedor .container según tus necesidades */
   border-radius: 20px;
   display: grid;
@@ -68,7 +60,7 @@ body {
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   width: 75%;
   height: 600px;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   display: grid;
   gap: 8px;
   justify-items: center;
@@ -80,8 +72,6 @@ body {
 
 .title {
   color: #FBD3E9;
-  color: -webkit-linear-gradient(to right, #BB377D, #FBD3E9);
-  /* Chrome 10-25, Safari 5.1-6 */
   color: linear-gradient(to right, #BB377D, #FBD3E9);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-size: 32px;
@@ -124,9 +114,6 @@ body {
   font-size: 22px;
   padding: 10px;
   color: #FBD3E9;
-  /* fallback for old browsers */
-  color: -webkit-linear-gradient(to right, #BB377D, #FBD3E9);
-  /* Chrome 10-25, Safari 5.1-6 */
   color: linear-gradient(to right, #BB377D, #FBD3E9);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -137,7 +124,6 @@ body {
   color: #f5f5f5;
   border: none;
   background: rgba(233, 231, 231, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0);
   overflow: hidden;
   transition: all 0.5s ease-in-out;
   padding: 5px;
@@ -150,7 +136,7 @@ body {
   border: 2px solid rgba(233, 170, 208, 0.247);
 }
 
-.btnRegistro {
+.form-registro .btnRegistro {
   width: 70%;
   height: 50px;
   margin: 10px;
@@ -163,13 +149,13 @@ body {
   align-items: center;
 }
 
-.btnRegistro:hover {
+.form-registro .btnRegistro:hover {
   cursor: pointer;
   background: #BB377D;
   box-shadow: 0px 4px 35px -5px #BB377D;
 }
 
-.btnGoogle {
+.form-registro .btnGoogle {
   width: 80%;
   height: 50px;
   padding: 10px;
@@ -184,15 +170,14 @@ body {
   align-items: center;
 }
 
-.btnGoogle img {
+.form-registro .btnGoogle img {
   margin: 10px;
 }
 
-.btnGoogle:hover {
+.form-registro .btnGoogle:hover {
   cursor: pointer;
   background: #54cbe0;
   box-shadow: 0px 4px 35px -5px #54cbe0;
-  cursor: pointer;
 
 }
 #error-container{
@@ -249,7 +234,6 @@ body {
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  border-radius: 20px;
   width: 87%;
   height: 80%;
   display: grid;
@@ -260,8 +244,6 @@ body {
 
 .title1 {
   color: #FBD3E9;
-  color: -webkit-linear-gradient(to right, #BB377D, #FBD3E9);
-  /* Chrome 10-25, Safari 5.1-6 */
   color: linear-gradient(to right, #BB377D, #FBD3E9);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-size: 32px;
@@ -304,11 +286,10 @@ body {
   font-size: 20px;
 }
 
-.label-nombre,
+#formRegistro1.label-nombre,
 .label-contraseña {
   margin-top: 15px;
 }
-
 
 #formRegistro1 .input-nombre,
 .input-contraseña {
@@ -331,7 +312,7 @@ body {
   font-size: 12px;
   margin-top: 17px;
 }
-.btnGoogle {
+#formRegistro1 .btnGoogle {
   width: 70%;
   height: 50px;
   padding: 10px;
@@ -346,16 +327,14 @@ body {
   align-items: center;
 }
 
-.btnGoogle img {
+#formRegistro1 .btnGoogle img {
   margin: 10px;
 }
 
-.btnGoogle:hover {
+#formRegistro1 .btnGoogle:hover {
   cursor: pointer;
   background: #54cbe0;
   box-shadow: 0px 4px 35px -5px #54cbe0;
-  cursor: pointer;
-
 }
 
 /*----------------- Responsive design (LOGIN)------------------------*/
