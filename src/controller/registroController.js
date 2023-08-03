@@ -28,6 +28,10 @@ export const conexionUser = async (nombre, email, password) => {
     const user = userCredential.user;
     const userName = nombre; // Usamos el nombre proporcionado en el formulario
     updateProfile(user, { displayName: userName });
+    window.history.pushState({}, '', `${window.location.origin}/`);
+    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.location.reload();
     return userCredential;
   } catch (error) {
     const errorCode = error.code;

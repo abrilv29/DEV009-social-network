@@ -54,11 +54,11 @@ export function feedView() {
       const sectionPublicaciones = document.querySelector('.section_publicaciones');
       sectionPublicaciones.innerHTML = '';
 
-    // Luego obtenemos los nuevos posts de todos los usuarios
-    const nuevosPosts = await traerpost();
+      // Luego obtenemos los nuevos posts de todos los usuarios
+      const nuevosPosts = await traerpost();
 
-    // Y finalmente dibujamos todos los posts actualizados
-    dibujarPosts(nuevosPosts);
+      // Y finalmente dibujamos todos los posts actualizados
+      dibujarPosts(nuevosPosts);
     }
   }); // btnPublicar
 

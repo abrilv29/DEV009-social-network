@@ -75,6 +75,7 @@ export function loginView() {
 
     try {
       const userName = await loginUser(email, password);
+      console.log(userName);
       localStorage.setItem('userName', userName); // Almacenar el nombre de usuario en localStorage
       window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed
     } catch (error) {
