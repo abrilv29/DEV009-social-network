@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { showError } from '../utils/showError.js';
@@ -18,20 +19,24 @@ export const addUser = (nombre, email) => {
 /* ---------------------Registro de Usuarios Nuevos----------------------------- */
 // Registro de usuarios usando el formulario de registro
 
-export const conexionUser = (nombre, email, password) => {
+export const conexionUser = async (nombre, email, password) => {
   const auth = getAuth(app);
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      addUser(nombre, email);
-      // Signed in
-      const user = userCredential.user;
-      const userName = nombre; // Usamos el nombre proporcionado en el formulario
-      updateProfile(user, { displayName: userName });
-      // Resto del código, no es necesario redirigir o disparar eventos aquí
-      return userCredential; // Devolvemos el objeto userCredential después del registro exitoso
-    })
-    .catch((error) => {
-      // Manejo de errores, no es necesario redirigir o disparar eventos aquí
-      throw error;
-    });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    addUser(nombre, email);
+    // Signed in
+    const user = userCredential.user;
+    const userName = nombre; // Usamos el nombre proporcionado en el formulario
+    updateProfile(user, { displayName: userName });
+    return userCredential;
+  } catch (error) {
+    const errorCode = error.code;
+    if (errorCode === 'auth/email-already-in-use') {
+      showError('El correo se encuentra registrado', 'repeat-email');
+    } else if (errorCode === 'auth/weak-password') {
+      showError('La contraseña debe contener al menos 6 caracteres', '6-letters');
+    } else {
+      showError('Correo o contraseña inválidos', '7-letters');
+    }
+  }
 };
