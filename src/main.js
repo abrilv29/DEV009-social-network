@@ -19,7 +19,7 @@ function pages(hash) {
 
     root.appendChild(route.component());
   } else {
-    pages(errorView());
+    pages('/404');
   }
 }
 pages(window.location.pathname || defaultRoute);

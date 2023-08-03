@@ -195,10 +195,11 @@ body {
   cursor: pointer;
 
 }
-#error-container{
-    color: #ec4545;
-    font-weight: bold;
-    font-size: 20px;
+
+#error-container {
+  color: #ec4545;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /*----------------- Responsive design ------------------------*/
@@ -221,12 +222,14 @@ body {
     width: 90%;
   }
 }
+
 @media (min-width: 320px) and (max-width: 480px) {
-    .form-registro {
-        width: 90%;
-        padding: 10px;
-    }
+  .form-registro {
+    width: 90%;
+    padding: 10px;
+  }
 }
+
 /*-----------------------------Pagina principal (LOGIN)---------------------------------------------*/
 
 .mimain {
@@ -273,6 +276,7 @@ body {
   font-size: 16px;
   margin: 5px;
 }
+
 .Registrate {
   color: #BB377D;
   font-size: 16px;
@@ -280,6 +284,7 @@ body {
   margin: 5px;
   cursor: pointer;
 }
+
 .btnLogin {
   width: 70%;
   height: 50px;
@@ -331,6 +336,7 @@ body {
   font-size: 12px;
   margin-top: 17px;
 }
+
 .btnGoogle {
   width: 70%;
   height: 50px;
@@ -370,199 +376,211 @@ body {
   .mimain {
     grid-template-columns: 1fr;
   }
-  
-#formRegistro1 {
+
+  #formRegistro1 {
     width: 90%;
     margin: 137px;
     overflow: hidden;
 
-}
-}
-@media (min-width: 320px) and (max-width: 480px) {
-    #formRegistro1 {
-        width: 90%;
-        margin: 110px;
-        padding: 10px;
-        overflow: hidden;
-    
-    }
-    
   }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  #formRegistro1 {
+    width: 90%;
+    margin: 110px;
+    padding: 10px;
+    overflow: hidden;
+
+  }
+
+}
+
 /*----------------- Feed ------------------------*/
 
 .container_feed {
-    border: 2px solid #ccc;
-    width: 100%;
-    max-width: 1000px;
-    margin: 2px auto;
-    height: 95%;
-    /* display: grid; */
-    /* grid-auto-rows: 10% 25% 65%; */
-    background-color: black;
+  border: 2px solid #ccc;
+  width: 100%;
+  max-width: 1000px;
+  margin: 2px auto;
+  height: 95%;
+  /* display: grid; */
+  /* grid-auto-rows: 10% 25% 65%; */
+  background-color: black;
 }
 
 .section_header {
-    width: 100%;
-    padding: 0 20px;
-    border-bottom: 2px solid #ccc;
-    display: grid;
-    grid-template-columns: 7fr 1fr;
-    height: auto;
-    background-color: #0e0c10;
+  width: 100%;
+  padding: 0 20px;
+  border-bottom: 2px solid #ccc;
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  height: auto;
+  background-color: #0e0c10;
 }
 
 .feed_logo {
-    height: 60px;
+  height: 60px;
 }
 
 .icono_perfil {
-    font-size: 40px;
-    background-color: transparent;
-    border: none;
-    margin-top: 10px;
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  margin-top: 10px;
 }
 
 .section_post {
-    width: 100%;
-    height: auto;
-    background-color: #4B4355;
-    border-radius: 8px;
-    margin: 10px 0;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: auto;
+  background-color: #4B4355;
+  border-radius: 8px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .section_text {
-    display: flex;
-    align-items: center;
-    /* flex-direction: row; */
+  display: flex;
+  align-items: center;
+  /* flex-direction: row; */
 }
 
 .boton_camara {
-    flex: 20%;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 25px;
-    color: #4B4355;
-    background-color: transparent;
-    border: none;
-    max-width: 65px ;
-    height: 100%;
-    padding: 5px 5px ;
-    margin: -37px;
+  flex: 20%;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
+  color: #4B4355;
+  background-color: transparent;
+  border: none;
+  max-width: 65px;
+  height: 100%;
+  padding: 5px 5px;
+  margin: -37px;
 }
 
 .boton_camara:hover {
-    color: black;
+  color: black;
 }
 
 
 .feed_new_post,
 .textarea_publicacion {
-    width: 80%;
-    height: 50px;
-    background-color: #C9C7CC;
-    border-radius: 8px;
-    font-size: 20px;
-    border: none;
-    margin: 10px 0px 10px 10px;
-    padding: 10px 37px 10px 10px;
-    text-align: left;
+  width: 80%;
+  height: 50px;
+  background-color: #C9C7CC;
+  border-radius: 8px;
+  font-size: 20px;
+  border: none;
+  margin: 10px 0px 10px 10px;
+  padding: 10px 37px 10px 10px;
+  text-align: left;
 
 }
 
 .feed_new_post::placeholder {
-    font-size: 16px;
-    color: grey;
+  font-size: 16px;
+  color: grey;
 }
 
 .mensaje_bienvenida,
 .name_user {
-    font-size: 23px;
-    font-family: "Poppins", sans-serif;
-    color: white;
-    margin: 10px 0px 0 10px;
+  font-size: 23px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  margin: 10px 0px 0 10px;
 }
 
 /*---Pendiente por revisar estilos en button---*/
 button {
-    width: 95%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-    border: none;
+  width: 95%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  border: none;
 }
 
 .button_publicar {
-    width: 25%;
-    border-radius: 7px;
-    background-color: #ccc;
-    border: none;
-    padding: 7px 8px;
-    font-size: 16px;
-    color: aliceblue;
-    margin-left: 10px;
+  width: 25%;
+  border-radius: 7px;
+  background-color: #ccc;
+  border: none;
+  padding: 7px 8px;
+  font-size: 16px;
+  color: aliceblue;
+  margin-left: 10px;
 }
 
 .button_publicar:hover,
 .feed_new_post:hover {
-    background-color: white;
-    color: grey;
+  background-color: white;
+  color: grey;
 }
 
 .section_publicaciones {
-    width: 100%;
-    height: auto;
-    /* background-color: #4B4355; */
-    border-radius: 8px;
-    display: grid;
+  width: 100%;
+  height: auto;
+  /* background-color: #4B4355; */
+  border-radius: 8px;
+  display: grid;
 }
 
 
 .container_publicacion {
-    display: grid;
-    margin: 10px 0px;
-    background-color: #4B4355;
+  display: grid;
+  margin: 10px 0px;
+  background-color: #4B4355;
 }
 
 section.like_edit_delete {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 10% 10% 10% 10%;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 10% 10% 10% 10%;
 }
 
 button.icono_like,
 button.icono_edit,
 button.icono_delete {
-    background-color: transparent;
-    font-size: 20px ;
-    color:  #C9C7CC;
-    max-width: 65px ;
-    height: 100%;
-    padding: 5px 5px ;
-    margin: 0 5px;
-    justify-content: center;
-    cursor: pointer;
+  background-color: transparent;
+  font-size: 20px;
+  color: #C9C7CC;
+  max-width: 65px;
+  height: 100%;
+  padding: 5px 5px;
+  margin: 0 5px;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .contador_like {
-    /* text-align: center; */
-    width: 22px;
-    color:  #C9C7CC;
-    font-size: 23px;
+  /* text-align: center; */
+  width: 22px;
+  color: #C9C7CC;
+  font-size: 23px;
 }
 
 /*--------Responsive (Feed)--------*/
 
 @media (max-width: 768px) {
-  .feed_logo{
+  .feed_logo {
     width: 200px;
     height: 50px;
   }
-  .icono_perfil{
+
+  .icono_perfil {
     font-size: 35px;
   }
 }
 
+
+
+
+
+
+.error {
+  color: #fff;
+  margin: auto;
+}
