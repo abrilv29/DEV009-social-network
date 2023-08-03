@@ -1,4 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+/* eslint-disable consistent-return */
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { showError } from '../utils/showError.js';
 import { app } from '../lib/config-firebase.js';
@@ -9,7 +10,7 @@ import { app } from '../lib/config-firebase.js';
 const conexioBD = getFirestore(app);
 
 export const addUser = (nombre, email) => {
-  addDoc(collection(conexioBD, 'user'), {
+  addDoc(collection(conexioBD, 'Users'), {
     name: nombre,
     email,
   });
@@ -18,25 +19,28 @@ export const addUser = (nombre, email) => {
 /* ---------------------Registro de Usuarios Nuevos----------------------------- */
 // Registro de usuarios usando el formulario de registro
 
-export const conexionUser = (nombre, email, password) => {
+export const conexionUser = async (nombre, email, password) => {
   const auth = getAuth(app);
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      addUser(nombre, email);
-      // Signed in
-      const user = userCredential.user;
-      window.history.pushState({}, '', `${window.location.origin}/`);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      console.log(user);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/email-already-in-use') {
-        showError('El correo se encuentra registrado', 'repeat-email');
-      } else if (errorCode === 'auth/weak-password') {
-        showError('La contraseña debe contener al menos 6 caracteres', '6-letters');
-      } else {
-        showError('Correo o contraseña inválidos', '7-letters');
-      }
-    });
-};// conexionUser
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    addUser(nombre, email);
+    // Signed in
+    const user = userCredential.user;
+    const userName = nombre; // Usamos el nombre proporcionado en el formulario
+    updateProfile(user, { displayName: userName });
+    window.history.pushState({}, '', `${window.location.origin}/`);
+    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.location.reload();
+    return userCredential;
+  } catch (error) {
+    const errorCode = error.code;
+    if (errorCode === 'auth/email-already-in-use') {
+      showError('El correo se encuentra registrado', 'repeat-email');
+    } else if (errorCode === 'auth/weak-password') {
+      showError('La contraseña debe contener al menos 6 caracteres', '6-letters');
+    } else {
+      showError('Correo o contraseña inválidos', '7-letters');
+    }
+  }
+};

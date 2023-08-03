@@ -151,7 +151,7 @@ body {
 }
 
 .btnRegistro {
-  width: 80%;
+  width: 70%;
   height: 50px;
   margin: 10px;
   font-size: 20px;
@@ -399,6 +399,7 @@ body {
 /*----------------- Feed ------------------------*/
 
 .container_feed {
+<<<<<<< HEAD
   border: 2px solid #ccc;
   width: 100%;
   max-width: 1000px;
@@ -417,6 +418,26 @@ body {
   grid-template-columns: 7fr 1fr;
   height: auto;
   background-color: #0e0c10;
+=======
+    border: 2px solid #FBD3E9;
+    width: 100%;
+    max-width: 1000px;
+    margin: 2px auto;
+    height: 100%;
+    /* display: grid; */
+    /* grid-auto-rows: 10% 25% 65%; */
+    background-color: black;
+}
+
+.section_header {
+    width: 100%;
+    padding: 0 20px;
+    border-bottom: 2px solid #FBD3E9;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    height: auto;
+    background-color: #0e0c10;
+>>>>>>> f94bacb696d8b033db99c0a0857bf0bb44b9ea91
 }
 
 .feed_logo {
@@ -424,10 +445,18 @@ body {
 }
 
 .icono_perfil {
+<<<<<<< HEAD
   font-size: 40px;
   background-color: transparent;
   border: none;
   margin-top: 10px;
+=======
+    font-size: 40px;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+
+>>>>>>> f94bacb696d8b033db99c0a0857bf0bb44b9ea91
 }
 
 .section_post {
@@ -467,6 +496,7 @@ body {
 
 .feed_new_post,
 .textarea_publicacion {
+<<<<<<< HEAD
   width: 80%;
   height: 50px;
   background-color: #C9C7CC;
@@ -476,6 +506,17 @@ body {
   margin: 10px 0px 10px 10px;
   padding: 10px 37px 10px 10px;
   text-align: left;
+=======
+    width: 80%;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 20px;
+    border: none;
+    margin: 10px 0px 10px 10px;
+    padding: 10px 37px 10px 10px;
+    text-align: left;
+>>>>>>> f94bacb696d8b033db99c0a0857bf0bb44b9ea91
 
 }
 
@@ -503,6 +544,7 @@ button {
 }
 
 .button_publicar {
+<<<<<<< HEAD
   width: 25%;
   border-radius: 7px;
   background-color: #ccc;
@@ -517,7 +559,28 @@ button {
 .feed_new_post:hover {
   background-color: white;
   color: grey;
+=======
+    width: 25%;
+    border-radius: 15px;
+    background-color: #FBD3E9;
+    border: none;
+    padding: 7px 8px;
+    font-size: 16px;
+    color: #BB377D;
+    margin-left: 10px;
 }
+
+.button_publicar:hover{
+  background: #BB377D;
+  box-shadow: 0px 4px 35px -5px #BB377D;
+  color: aliceblue;
+>>>>>>> f94bacb696d8b033db99c0a0857bf0bb44b9ea91
+}
+
+/* .feed_new_post:hover {
+  background-color: #ebd6e1;
+  color: grey;
+} */
 
 .section_publicaciones {
   width: 100%;
@@ -544,6 +607,7 @@ section.like_edit_delete {
 button.icono_like,
 button.icono_edit,
 button.icono_delete {
+<<<<<<< HEAD
   background-color: transparent;
   font-size: 20px;
   color: #C9C7CC;
@@ -560,6 +624,24 @@ button.icono_delete {
   width: 22px;
   color: #C9C7CC;
   font-size: 23px;
+=======
+    background-color: transparent;
+    font-size: 20px ;
+    color:  #FBD3E9;
+    max-width: 65px ;
+    height: 100%;
+    padding: 5px 5px ;
+    margin: 0 5px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.contador_like {
+    /* text-align: center; */
+    width: 22px;
+    color:  #FBD3E9;
+    font-size: 23px;
+>>>>>>> f94bacb696d8b033db99c0a0857bf0bb44b9ea91
 }
 
 /*--------Responsive (Feed)--------*/
