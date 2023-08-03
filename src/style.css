@@ -391,11 +391,11 @@ body {
 /*----------------- Feed ------------------------*/
 
 .container_feed {
-    border: 2px solid #ccc;
+    border: 2px solid #FBD3E9;
     width: 100%;
     max-width: 1000px;
     margin: 2px auto;
-    height: 95%;
+    height: 100%;
     /* display: grid; */
     /* grid-auto-rows: 10% 25% 65%; */
     background-color: black;
@@ -404,7 +404,7 @@ body {
 .section_header {
     width: 100%;
     padding: 0 20px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #FBD3E9;
     display: grid;
     grid-template-columns: 7fr 1fr;
     height: auto;
@@ -420,6 +420,7 @@ body {
     background-color: transparent;
     border: none;
     margin-top: 10px;
+
 }
 
 .section_post {
@@ -461,7 +462,7 @@ body {
 .textarea_publicacion {
     width: 80%;
     height: 50px;
-    background-color: #C9C7CC;
+    background-color: #fff;
     border-radius: 8px;
     font-size: 20px;
     border: none;
@@ -496,20 +497,25 @@ button {
 
 .button_publicar {
     width: 25%;
-    border-radius: 7px;
-    background-color: #ccc;
+    border-radius: 15px;
+    background-color: #FBD3E9;
     border: none;
     padding: 7px 8px;
     font-size: 16px;
-    color: aliceblue;
+    color: #BB377D;
     margin-left: 10px;
 }
 
-.button_publicar:hover,
-.feed_new_post:hover {
-    background-color: white;
-    color: grey;
+.button_publicar:hover{
+  background: #BB377D;
+  box-shadow: 0px 4px 35px -5px #BB377D;
+  color: aliceblue;
 }
+
+/* .feed_new_post:hover {
+  background-color: #ebd6e1;
+  color: grey;
+} */
 
 .section_publicaciones {
     width: 100%;
@@ -538,7 +544,7 @@ button.icono_edit,
 button.icono_delete {
     background-color: transparent;
     font-size: 20px ;
-    color:  #C9C7CC;
+    color:  #FBD3E9;
     max-width: 65px ;
     height: 100%;
     padding: 5px 5px ;
@@ -550,7 +556,7 @@ button.icono_delete {
 .contador_like {
     /* text-align: center; */
     width: 22px;
-    color:  #C9C7CC;
+    color:  #FBD3E9;
     font-size: 23px;
 }
 

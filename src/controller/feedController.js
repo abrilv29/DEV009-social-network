@@ -1,5 +1,14 @@
 import {
+<<<<<<< HEAD
   getFirestore, collection, addDoc, getDocs, orderBy, query, updateDoc,
+=======
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  orderBy,
+  query,
+>>>>>>> 23ca2f430915e1c073f31f01717880b57ebdecc2
 } from 'firebase/firestore';
 import { app } from '../lib/config-firebase';
 
@@ -15,6 +24,10 @@ export async function guardarPost(datos) {
   } catch (e) {
     console.error('Error adding document: ', e);
   }
+<<<<<<< HEAD
+=======
+  return null;
+>>>>>>> 23ca2f430915e1c073f31f01717880b57ebdecc2
 }
 
 export async function traerpost() {
@@ -22,6 +35,7 @@ export async function traerpost() {
   const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
   const documentos = await getDocs(todosLosPosts);
   return documentos;
+<<<<<<< HEAD
 }
 
 export async function updatePost(post) {
@@ -31,4 +45,6 @@ export async function updatePost(post) {
   } catch (e) {
     console.error('Error updating document: ', e);
   }
+=======
+>>>>>>> 23ca2f430915e1c073f31f01717880b57ebdecc2
 }
