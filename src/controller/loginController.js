@@ -7,22 +7,22 @@ import { app } from '../lib/config-firebase.js';
 
 // const conexioBD = getFirestore(app);
 
-export const loginUser = (email, password) => {
-  const auth = getAuth(app);
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+export const loginUser = async (email, password) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const auth = getAuth(app);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      window.history.pushState({}, '', `${window.location.origin}/feed`);
-      /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      window.location.reload();
+    const token = userCredential.user.accessToken;
+    localStorage.setItem('accessToken', token);
+    console.log(token);
+    const mail = userCredential.user.email;
+    localStorage.setItem('email', mail);
+    console.log(mail);
+    const userName = userCredential.user.displayName;
+    return userName; // Devolvemos el nombre de usuario
     // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
+  } catch (error) {
+    throw error;
+  }
 };

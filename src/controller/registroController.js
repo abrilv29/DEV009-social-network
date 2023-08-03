@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { showError } from '../utils/showError.js';
 import { app } from '../lib/config-firebase.js';
@@ -9,7 +9,7 @@ import { app } from '../lib/config-firebase.js';
 const conexioBD = getFirestore(app);
 
 export const addUser = (nombre, email) => {
-  addDoc(collection(conexioBD, 'user'), {
+  addDoc(collection(conexioBD, 'Users'), {
     name: nombre,
     email,
   });
@@ -20,23 +20,18 @@ export const addUser = (nombre, email) => {
 
 export const conexionUser = (nombre, email, password) => {
   const auth = getAuth(app);
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       addUser(nombre, email);
       // Signed in
       const user = userCredential.user;
-      window.history.pushState({}, '', `${window.location.origin}/`);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      console.log(user);
+      const userName = nombre; // Usamos el nombre proporcionado en el formulario
+      updateProfile(user, { displayName: userName });
+      // Resto del código, no es necesario redirigir o disparar eventos aquí
+      return userCredential; // Devolvemos el objeto userCredential después del registro exitoso
     })
     .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/email-already-in-use') {
-        showError('El correo se encuentra registrado', 'repeat-email');
-      } else if (errorCode === 'auth/weak-password') {
-        showError('La contraseña debe contener al menos 6 caracteres', '6-letters');
-      } else {
-        showError('Correo o contraseña inválidos', '7-letters');
-      }
+      // Manejo de errores, no es necesario redirigir o disparar eventos aquí
+      throw error;
     });
-};// conexionUser
+};

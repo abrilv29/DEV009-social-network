@@ -38,6 +38,8 @@ export function loginView() {
   passIcono.innerHTML = '<i class="fa-solid fa-lock"></i>';
   const passText = createElement('input', 'estilos-input', passDiv);
   passText.setAttribute('type', 'password');
+  passText.setAttribute('name', 'password');
+  passText.setAttribute('required', ''); // campo es obligatorio
   passText.placeholder = 'Contraseña';
 
   // boton de iniciar sesion
@@ -55,12 +57,9 @@ export function loginView() {
   // seccion del boton de registro cuenta de Google
   const btnGoogle = createElement('button', 'btnGoogle', formElement);
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
-
-  const userNameElement = createElement('p', '', formElement);
-  userNameElement.id = 'userNameElement';
-
-
-
+  const welcomeMessageElement = createElement('div', '', formElement);
+  welcomeMessageElement.id = 'welcomeMessage';
+  welcomeMessageElement.innerHTML = '<p id="welcomeMessage"></p>';
   /* -------------------------------Navegacion vista registro--------------------------------- */
   registrate.addEventListener('click', () => {
     window.history.pushState({}, '', `${window.location.origin}/registro`);
@@ -69,12 +68,19 @@ export function loginView() {
     window.location.reload();
   });
   /* -------------------------------Login Formulario--------------------------------- */
-  formElement.addEventListener('submit', (e) => {
+  formElement.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailText.value;
     const password = passText.value;
-    loginUser(email, password);
-  });
 
+    try {
+      const userName = await loginUser(email, password);
+      localStorage.setItem('userName', userName); // Almacenar el nombre de usuario en localStorage
+      window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed
+    } catch (error) {
+      console.log(error);
+      // Manejo de errores
+    }
+  });
   return content;
-}
+}// loginView
