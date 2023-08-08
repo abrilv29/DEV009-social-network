@@ -518,7 +518,7 @@ section.like_edit_delete {
     grid-template-columns: 10% 10% 10% 10%;
 }
 
-button.icono_like,
+i.icono_like,
 button.icono_edit,
 button.icono_delete {
     background-color: transparent;
