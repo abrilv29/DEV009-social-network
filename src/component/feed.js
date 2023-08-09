@@ -124,11 +124,7 @@ export function feedView(userDisplayName) {
     } else {
       const userDisplay = userDisplayName; // Utiliza el parámetro que se pasa a la función
       const userId = localStorage.getItem('userId');
-
-      if (!userDisplay || !userId) {
-        console.log('No se han obtenido los datos del usuario correctamente.');
-        return;
-      }
+      // Se crea un objeto nuevo con la informacion de cada publicacion
       const datos = {
         author: userDisplay,
         userId,
