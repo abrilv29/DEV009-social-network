@@ -42,7 +42,6 @@ export async function traerpost() {
 // Likes
 export async function addLiked(userId, idPost) {
   const documentoPosts = doc(db, 'posts', idPost);
-
   // Atomically add a new usuario to the "likes" array field.
   await updateDoc(documentoPosts, {
     likes: arrayUnion(userId),
