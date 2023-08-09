@@ -1,21 +1,24 @@
 import {
-  getFirestore, collection, addDoc, onSnapshot, orderBy, query,
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  orderBy,
+  query,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 import { app } from '../lib/config-firebase';
 
-// const auth = getAuth();
+// const auth = getAuth(); // Obtener la instancia de Firebase Authentication
 const db = getFirestore(app);
 
 export async function guardarPost(datos) {
   try {
-    const documento = await addDoc(collection(db, 'posts'), {
-      datos,
-      created_date: Date.now(),
-      author: localStorage.getItem('userName'),
-      likes: 0,
-    });
-    console.log(datos);
-    console.log('Document written with ID: ', documento.id);
+    console.log('Datos antes de guardar:', datos); // Agrega este mensaje de depuración
+    const documento = await addDoc(collection(db, 'posts'), datos);
     return documento;
   } catch (e) {
     console.error('Error adding document: ', e);
@@ -23,58 +26,32 @@ export async function guardarPost(datos) {
   return null;
 }
 
-/*export async function traerpost(callback) {
-  const userName = localStorage.getItem('userName');
-
-  if (!userName) {
-    // Si no se encuentra el nombre de usuario en el Local Storage, no hacemos nada.
-    return;
+export async function traerpost() {
+  try {
+    const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
+    const querySnapshot = await getDocs(todosLosPosts);
+    return querySnapshot;
+  } catch (error) {
+    console.error('Error al obtener los posts:', error);
+    return null;
   }
-  console.log('Funcion traer post en tiempo real');
-  const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
-  const newPost = onSnapshot(todosLosPosts, (querySnapshot) => {
-    const postPorUsers = [];
-    querySnapshot.forEach((doc) => {
-      if (doc.data().author === userName) {
-        postPorUsers.push(doc.data());
-      }// cierra el if
-    });// cierra el forEach
-    callback(postPorUsers); //
-  });
-  // eslint-disable-next-line consistent-return
-  return newPost;
-}*/
-/*export async function traerpost(callback) {
-  const userName = localStorage.getItem('userName');
+}
 
-  if (!userName) {
-    // Si no se encuentra el nombre de usuario en el Local Storage, no hacemos nada.
-    return;
-  }
-  console.log('Funcion traer post en tiempo real');
-  const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
-  const newPost = onSnapshot(todosLosPosts, (querySnapshot) => {
-    const postPorUsers = [];
-    querySnapshot.forEach((doc) => {
-      if (doc.data().author === userName) {
-        postPorUsers.push(doc.data());
-      }// cierra el if
-    });// cierra el forEach
-    console.log('Datos recibidos:', postPorUsers); // Agrega este log para verificar los datos recibidos
-    callback(postPorUsers); //
+// ...
+
+// Likes
+export async function addLiked(userId, idPost) {
+  const documentoPosts = doc(db, 'posts', idPost);
+  // Atomically add a new usuario to the "likes" array field.
+  await updateDoc(documentoPosts, {
+    likes: arrayUnion(userId),
   });
-  // eslint-disable-next-line consistent-return
-  return newPost;
-}*/
-export async function traerpost(callback) {
-  const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
-  const newPost = onSnapshot(todosLosPosts, (querySnapshot) => {
-    const postPorUsers = [];
-    querySnapshot.forEach((doc) => {
-      postPorUsers.push(doc.data());
-    });
-    console.log('Datos recibidos:', postPorUsers);
-    callback(postPorUsers);
+}
+
+export async function removeLiked(userId, idPost) {
+  const documentoPosts = doc(db, 'posts', idPost);
+  // Atomically remove a usuario from the "likes" array field.
+  await updateDoc(documentoPosts, {
+    likes: arrayRemove(userId),
   });
-  return newPost;
 }

@@ -1,6 +1,5 @@
-/* eslint-disable no-use-before-define */
 import { createElement } from '../utils/utils';
-import { loginUser } from '../controller/loginController';
+import { loginUser, loginWithGoogle } from '../controller/loginController.js';
 
 export function loginView() {
   const content = document.createElement('main');
@@ -47,6 +46,20 @@ export function loginView() {
   btnLogin.setAttribute('type', 'submit');
   btnLogin.innerHTML = 'Iniciar Seción <i class="fa-solid fa-right-to-bracket"></i>';
 
+  // recuperar contraseña
+  const mensajeOlvidasteContraseña = createElement('p', 'mensajeOlvidasteContraseña', formElement);
+  mensajeOlvidasteContraseña.textContent = '¿Olvidaste tu contraseña?';
+
+  const recuperala = createElement('a', 'recuperala', mensajeOlvidasteContraseña);
+  recuperala.textContent = 'Recupérala';
+
+  // seccion del boton de registro cuenta de Google
+  const btnGoogle = createElement('button', 'btnGoogle', formElement);
+  btnGoogle.id = 'btnGoogle';
+  btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
+  const welcomeMessageElement = createElement('div', '', formElement);
+  welcomeMessageElement.id = 'welcomeMessage';
+
   // navegacion a la pagina de registro
   const mensajeNoTienesCuenta = createElement('p', 'mensajeNoTienesCuenta', formElement);
   mensajeNoTienesCuenta.textContent = 'Si no tienes cuenta';
@@ -54,12 +67,6 @@ export function loginView() {
   const registrate = createElement('span', 'Registrate', mensajeNoTienesCuenta);
   registrate.textContent = 'Registrate';
 
-  // seccion del boton de registro cuenta de Google
-  const btnGoogle = createElement('button', 'btnGoogle', formElement);
-  btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
-  const welcomeMessageElement = createElement('div', '', formElement);
-  welcomeMessageElement.id = 'welcomeMessage';
-  welcomeMessageElement.innerHTML = '<p id="welcomeMessage"></p>';
   /* -------------------------------Navegacion vista registro--------------------------------- */
   registrate.addEventListener('click', () => {
     window.history.pushState({}, '', `${window.location.origin}/registro`);
@@ -74,14 +81,19 @@ export function loginView() {
     const password = passText.value;
 
     try {
-      const userName = await loginUser(email, password);
-      console.log(userName);
-      localStorage.setItem('userName', userName); // Almacenar el nombre de usuario en localStorage
-      window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed
+      const user = await loginUser(email, password);
+      localStorage.setItem('userDisplayName', user); // Almacenar el nombre de usuario en el LocalStorage
+      window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed;
     } catch (error) {
       console.log(error);
       // Manejo de errores
     }
+  });
+
+  /** ---------------------Google------------------------------- */
+  // Aquí modificamos el evento click del botón btnGoogle
+  btnGoogle.addEventListener('click', () => {
+    loginWithGoogle();
   });
   return content;
 }// loginView

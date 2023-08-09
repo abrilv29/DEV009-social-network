@@ -16,8 +16,10 @@ function pages(hash) {
 
   if (route && route.component) {
     window.history.pushState({}, route.path, window.location.origin + route.path);
-
-    root.appendChild(route.component());
+    root.innerHTML = ''; // Limpia el contenido actual
+    const userDisplayName = localStorage.getItem('userDisplayName'); // Parsea la cadena JSON a un objeto
+    console.log('Nombre de usuario en main.js:', userDisplayName);
+    root.appendChild(route.component(userDisplayName));// Pasa el objeto de usuario a la vista
   } else {
     pages('/404');
   }
