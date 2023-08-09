@@ -17,7 +17,15 @@ const db = getFirestore(app);
 
 export async function guardarPost(datos) {
   try {
-    console.log('Datos antes de guardar:', datos); // Agrega este mensaje de depuración
+    // Agrega los valores de author y userId al objeto datos antes de guardar
+    const userDisplayName = localStorage.getItem('userDisplayName');
+    const userId = localStorage.getItem('userId');
+
+    datos.author = userDisplayName; // Agrega el nombre del usuario
+    datos.userId = userId; // Agrega el ID del usuario
+
+    console.log('Datos antes de guardar:', datos);
+
     const documento = await addDoc(collection(db, 'posts'), datos);
     return documento;
   } catch (e) {
@@ -27,14 +35,9 @@ export async function guardarPost(datos) {
 }
 
 export async function traerpost() {
-  try {
-    const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
-    const querySnapshot = await getDocs(todosLosPosts);
-    return querySnapshot;
-  } catch (error) {
-    console.error('Error al obtener los posts:', error);
-    return null;
-  }
+  const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
+  const documentos = await getDocs(todosLosPosts);
+  return documentos;
 }
 
 // ...
