@@ -1,6 +1,6 @@
-/* eslint-disable max-len */
 import { createElement } from '../utils/utils';
 import { conexionUser } from '../controller/registroController';
+import { loginWithGoogle } from '../controller/loginController.js';
 
 export function registroView() {
   // Seccion principal del registro
@@ -15,7 +15,6 @@ export function registroView() {
   formRegistro.id = 'form-registro';
   const title = createElement('p', 'title', formRegistro);
   title.innerHTML = 'Signup';
-
   // input text nombre
   const nameDiv = createElement('div', 'input-iconos', formRegistro);
   const nameIcono = createElement('p', 'estilos-icono', nameDiv);
@@ -24,7 +23,6 @@ export function registroView() {
   nameText.setAttribute('type', 'text');
   nameText.setAttribute('required', ''); // campo es obligatorio
   nameText.placeholder = 'Nombre de Usuario';
-
   // input text email
   const emailDiv = createElement('div', 'input-iconos', formRegistro);
   const emailIcono = createElement('p', 'estilos-icono', emailDiv);
@@ -34,7 +32,6 @@ export function registroView() {
   emailText.setAttribute('name', 'email');
   emailText.setAttribute('required', ''); // campo es obligatorio
   emailText.placeholder = 'Correo Electronico';
-
   // input text password
   const passDiv = createElement('div', 'input-iconos', formRegistro);
   const passIcono = createElement('p', 'estilos-icono', passDiv);
@@ -42,7 +39,6 @@ export function registroView() {
   const passText = createElement('input', 'estilos-input', passDiv);
   passText.setAttribute('type', 'password');
   passText.placeholder = 'Contraseña';
-
   // input text confirmar contraseña
   const confirmarpassDiv = createElement('div', 'input-iconos', formRegistro);
   const confirmarpassIcono = createElement('p', 'estilos-icono', confirmarpassDiv);
@@ -50,22 +46,18 @@ export function registroView() {
   const confirmarpassText = createElement('input', 'estilos-input', confirmarpassDiv);
   confirmarpassText.setAttribute('type', 'password');
   confirmarpassText.placeholder = 'Confirmar Contraseña';
-
   // seccion del boton de registro
   const btnRegistro = createElement('button', 'btnRegistro', formRegistro);
   btnRegistro.setAttribute('type', 'submit');
   btnRegistro.innerHTML = 'Registro <i class="fa-solid fa-right-to-bracket"></i>';
-
   // navegacion a la pagina de login
   const textRegreso = createElement('p', 'textRegreso', formRegistro);
   textRegreso.textContent = 'Ya tienes una cuenta?';
   const mensajeRegreso = createElement('span', 'mensajeRegreso', textRegreso);
   mensajeRegreso.textContent = 'Ingresa aquí';
-
   // seccion del boton de registro cuenta de Google
   const btnGoogle = createElement('button', 'btnGoogle', formRegistro);
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
-
   // mensajes de error del registro cuenta
   const validaciones = createElement('div', '', formRegistro);
   validaciones.id = 'error-container';
@@ -76,18 +68,15 @@ export function registroView() {
   <p id="nameError" style="display: none"> Por favor ingrese su nombre de usuario</p>
   <p id="6-letters" style="display: none"> La contraseña debe contener al menos 6 caracteres </p> 
   <p id="7-letters" style="display: none"> Correo o contraseña inválidos </p> `;
-  console.log(validaciones);
 
-  /* -------------------------- Registro usuarios y validacion de campos ------------------------- */
+  /* ------------------ Registro usuarios y validacion de campos ---------------------- */
   formRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
-
     // Obtener los valores de los campos del formulario
     const nameValue = nameText.value;
     const emailValue = emailText.value;
     const passValue = passText.value;
     const confirmarPassValue = confirmarpassText.value;
-
     // Ocultar todos los mensajes de error antes de hacer una nueva validación
     document.getElementById('repeat-password').style.display = 'none';
     document.getElementById('repeat-email').style.display = 'none';
@@ -95,7 +84,6 @@ export function registroView() {
     document.getElementById('nameError').style.display = 'none';
     document.getElementById('6-letters').style.display = 'none';
     document.getElementById('7-letters').style.display = 'none';
-
     if (passValue === confirmarPassValue) {
       conexionUser(nameValue, emailValue, passValue);
     } else {
@@ -106,7 +94,6 @@ export function registroView() {
       document.getElementById('emailError').style.display = 'block';
     }
   });
-
   /* -------------------------- Regreso a la vista de  login ------------------------- */
   /* Si ya tieenes una  cuenta registrada te redirecciona a Login */
   textRegreso.addEventListener('click', () => {
@@ -121,15 +108,7 @@ export function registroView() {
   btnGoogle.addEventListener('click', async () => {
     btnGoogle.disabled = true;
     // Inicio de sesion con google
-    /* loginWithGoogle()
-    .then(() => {
-      //  Redireccionamiento del usuario al feeds
-      window.history.pushState({}, '', `${window.location.origin}/feed`);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-    }).catch(() => {
-      document.getElementById('messageError').style.display = 'block';
-    }); */
+    loginWithGoogle();
   });
-
   return container;
 }

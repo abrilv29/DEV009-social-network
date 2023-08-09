@@ -14,7 +14,6 @@ export const addUser = (nombre, email) => {
     name: nombre,
     email,
   });
-  console.log(addUser);
 };
 /* ---------------------Registro de Usuarios Nuevos----------------------------- */
 // Registro de usuarios usando el formulario de registro
