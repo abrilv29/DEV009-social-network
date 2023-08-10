@@ -13,6 +13,8 @@ export const loginUser = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     // Almacenar el nombre de usuario en el localStorage
     localStorage.setItem('userDisplayName', userCredential.user.displayName);
+    // Almacenar el id del usuario en el localStorage
+    localStorage.setItem('userId', userCredential.user.uid);
     // Signed in
     const token = userCredential.user.accessToken;
     localStorage.setItem('accessToken', token);
@@ -35,8 +37,8 @@ export const loginWithGoogle = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-
       // Guardar la información en el localStorage
+      localStorage.setItem('userId', user.uid);
       localStorage.setItem('userImage', user.photoURL);
       localStorage.setItem('userDisplayName', user.displayName);
       localStorage.setItem('userGmail', user.email);

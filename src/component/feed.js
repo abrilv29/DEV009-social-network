@@ -22,29 +22,38 @@ function createPost(datos, index, publicaciones) {
     const botonDelete = createElement('button', 'icono_delete', sectionInteracion);
     botonDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
   }
-  const botonLike = createElement('i', 'icono_like', sectionInteracion);
-  botonLike.classList.add('fa-regular');
-  botonLike.classList.add('fa-heart');
-  botonLike.setAttribute('data-id', datos.id);
+  const iconoLike = createElement('i', 'icono_like', sectionInteracion);
+  iconoLike.classList.add('fa-heart');
+  if (datos.likes.includes(localStorage.getItem('userId'))) {
+    iconoLike.classList.add('fa-solid');
+  } else {
+    iconoLike.classList.add('fa-regular');
+  }
+
+  iconoLike.setAttribute('data-id', datos.id);
   const contador = createElement('p', 'contador_like', sectionInteracion);
   // index = indice de cada publicacion en el array de likes
   contador.innerHTML = publicaciones[index].likes.length;
 
-  // Click al boton like
-  botonLike.addEventListener('click', async (e) => {
+  // Click al icono like
+  iconoLike.addEventListener('click', async (e) => {
+    // debugger;
     const postLikes = publicaciones[index].likes;
     const idPost = e.target.dataset.id;
 
     if (postLikes.includes(localStorage.getItem('userId'))) {
       await removeLiked(localStorage.getItem('userId'), idPost);
       contador.innerHTML = postLikes.length - 1;
-      const indexLike = postLikes.indexOf(localStorage.getItem('userId'));
-      const spliceLikes = postLikes.slice(indexLike, indexLike);
-      publicaciones[index].likes = spliceLikes;
+      const likesFiltrados = postLikes.filter((likes) => likes !== localStorage.getItem('userId'));
+      publicaciones[index].likes = likesFiltrados;
+      iconoLike.classList.add('fa-regular');
+      iconoLike.classList.remove('fa-solid');
     } else {
       await addLiked(localStorage.getItem('userId'), idPost);
       contador.innerHTML = postLikes.length + 1;
       publicaciones[index].likes.push(localStorage.getItem('userId'));
+      iconoLike.classList.remove('fa-regular');
+      iconoLike.classList.add('fa-solid');
     }
   });
 }
