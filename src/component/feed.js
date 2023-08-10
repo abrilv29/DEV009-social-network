@@ -3,7 +3,65 @@ import {
   guardarPost, traerpost, addLiked, removeLiked,
 } from '../controller/feedController';
 
-/* ----------------Formulario para hacer la publicacion -----------------------*/
+// Funcion crear publicaciones
+function createPost(datos, index, publicaciones) {
+  const sectionPublicaciones = document.querySelector('.section_publicaciones');
+  const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
+  const name = createElement('p', 'name_user', divPublicacion);
+  name.innerHTML = datos.author;
+  const textarea = createElement('textarea', 'textarea_publicacion', divPublicacion);
+  textarea.setAttribute('disabled', '');
+  textarea.innerHTML = datos.post;
+  const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
+  // Verficamos si el autor de la publicacion es el mismo del Local Storage
+  if (datos.userId === localStorage.getItem('userId')) {
+    // Bonton edit
+    const botonEdit = createElement('button', 'icono_edit', sectionInteracion);
+    botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+    // Boton delete
+    const botonDelete = createElement('button', 'icono_delete', sectionInteracion);
+    botonDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+  }
+  const botonLike = createElement('i', 'icono_like', sectionInteracion);
+  botonLike.classList.add('fa-regular');
+  botonLike.classList.add('fa-heart');
+  botonLike.setAttribute('data-id', datos.id);
+  const contador = createElement('p', 'contador_like', sectionInteracion);
+  // index = indice de cada publicacion en el array de likes
+  contador.innerHTML = publicaciones[index].likes.length;
+
+  // Click al boton like
+  botonLike.addEventListener('click', async (e) => {
+    const postLikes = publicaciones[index].likes;
+    const idPost = e.target.dataset.id;
+
+    if (postLikes.includes(localStorage.getItem('userId'))) {
+      await removeLiked(localStorage.getItem('userId'), idPost);
+      contador.innerHTML = postLikes.length - 1;
+      const indexLike = postLikes.indexOf(localStorage.getItem('userId'));
+      const spliceLikes = postLikes.slice(indexLike, indexLike);
+      publicaciones[index].likes = spliceLikes;
+    } else {
+      await addLiked(localStorage.getItem('userId'), idPost);
+      contador.innerHTML = postLikes.length + 1;
+      publicaciones[index].likes.push(localStorage.getItem('userId'));
+    }
+  });
+}
+
+// Funcion dibujar posts
+async function dibujarPosts() {
+  const documentos = await traerpost();
+  // Se crea un objeto nuevo con la informacion de cada publicacion
+  // (se cambia el querySnapshot por un array mas simple)
+  const publicaciones = documentos.docs.map(
+    (documento) => ({ id: documento.id, ...documento.data() }),
+  );
+  publicaciones.forEach((doc, index) => {
+    createPost(doc, index, publicaciones);
+  });
+}
+
 export function feedView(userDisplayName) {
   // Seccion container feed
   const sectionFeed = createElement('section', 'container_feed', '');
@@ -16,19 +74,17 @@ export function feedView(userDisplayName) {
   const iconoPerfil = createElement('button', 'icono_perfil', divIcono);
   iconoPerfil.innerHTML = '<i class="fa-solid fa-user" style="color: #FBD3E9;"></i>';
   // Seccion para cerrar la sesion
-  const ventanaIcono = createElement('div', 'ventana_oculta', divIcono); // Agrega la clase 'ventana_oculta' para que esté oculto inicialmente
-  ventanaIcono.id = 'ventana_icono';
+  const ventanaIcono = createElement('div', 'ventana_oculta', divIcono);
   const cerrarSesion = createElement('div', 'cerrar_sesion', ventanaIcono);
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
 
   // Seccion publicar post
   const sectionPost = createElement('section', 'section_post', sectionFeed);
-  // mensaje de bienvenida
+  // Seccion mensaje de bienvenida
   const mensajeBienvenida = createElement('h2', 'mensaje_bienvenida', sectionPost);
   mensajeBienvenida.innerHTML = `Bienvenid@ ${userDisplayName}`;
   console.log('Nombre de usuario en feedView:', userDisplayName);
 
-  // Seccion publicaciones
   const divPost = createElement('div', 'post', sectionPost);
   const divInput = createElement('div', 'section_text', divPost);
   const inputPublicacion = createElement('input', 'feed_new_post', divInput);
@@ -68,11 +124,7 @@ export function feedView(userDisplayName) {
     } else {
       const userDisplay = userDisplayName; // Utiliza el parámetro que se pasa a la función
       const userId = localStorage.getItem('userId');
-
-      if (!userDisplay || !userId) {
-        console.log('No se han obtenido los datos del usuario correctamente.');
-        return;
-      }
+      // Se crea un objeto nuevo con la informacion de cada publicacion
       const datos = {
         author: userDisplay,
         userId,
@@ -88,65 +140,5 @@ export function feedView(userDisplayName) {
       dibujarPosts();
     }
   });
-
-  /* ----------------------------Seccion para crear el nuevo post -------------------------------*/
-  // Funcion crear publicaciones
-  function createPost(datos, index, publicaciones) {
-    const sectionPublicaciones = document.querySelector('.section_publicaciones');
-    const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
-    const name = createElement('p', 'name_user', divPublicacion);
-    name.innerHTML = datos.author;
-    const textarea = createElement('textarea', 'textarea_publicacion', divPublicacion);
-    textarea.setAttribute('disabled', '');
-    textarea.innerHTML = datos.post;
-    // seccion para los botones edit,delete, like de las publicaciones
-    const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
-
-    const btnEdit = createElement('button', 'icono_edit', sectionInteracion);
-    btnEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-
-    const btnDelete = createElement('button', 'icono_delete', sectionInteracion);
-    btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-
-    const botonLike = createElement('button', 'icono_like', sectionInteracion);
-    botonLike.innerHTML = '<i class="fa-regular fa-heart"></i>';
-    botonLike.setAttribute('data-id', datos.id);
-    // contador del boton  like
-    const contador = createElement('p', 'contador_like', sectionInteracion);
-    // index = indice de cada publicacion en el array de likes
-    contador.innerHTML = publicaciones[index].likes.length;
-
-    // Click al boton like
-    botonLike.addEventListener('click', async (e) => {
-      botonLike.querySelector('i').classList.remove('fa-regular');
-      botonLike.querySelector('i').classList.add('fa-solid');
-
-      const postLikes = publicaciones[index].likes;
-      const idPost = e.target.dataset.id;
-      if (postLikes.includes(localStorage.getItem('userId'))) {
-        await removeLiked(localStorage.getItem('userId'), idPost);
-        contador.innerHTML = postLikes.length - 1;
-        const indexLike = postLikes.indexOf(localStorage.getItem('userId'));
-        const spliceLikes = postLikes.slice(indexLike, indexLike);
-        publicaciones[index].likes = spliceLikes;
-      } else {
-        await addLiked(localStorage.getItem('userId'), idPost);
-        contador.innerHTML = postLikes.length + 1;
-        publicaciones[index].likes.push(localStorage.getItem('userId'));
-      }
-    });
-  }
-  // Funcion dibujar posts
-  async function dibujarPosts() {
-    const documentos = await traerpost();
-    // Se crea un objeto nuevo con la informacion de cada publicacion
-    // (se cambia el querySnapshot por un array mas simple)
-    const publicaciones = documentos.docs.map(
-      (documento) => ({ id: documento.id, ...documento.data() }),
-    );
-    publicaciones.forEach((doc, index) => {
-      createPost(doc, index, publicaciones);
-    });
-  }
   return sectionFeed;
 }
