@@ -606,7 +606,7 @@ section.like_edit_delete {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: 10% 10% 10% 10%;
+  grid-template-columns: 4% 5% 4% 10%;
 }
 
 .icono_like,
@@ -621,23 +621,6 @@ section.like_edit_delete {
   margin: 0 5px;
   justify-content: center;
   cursor: pointer;
-}
-
-
-/* Estilos cuando se hace clic en el botón */
-.icono_like:active i.fa-regular.fa-heart {
-  display: none;
-  /* Ocultar el icono regular cuando se hace clic */
-}
-
-.icono_like:active::before {
-  content: "\f004";
-  /* Código del icono sólido en Font Awesome */
-  font-family: "Font Awesome 5 Free";
-  /* Asegúrate de usar la fuente correcta */
-  font-weight: 900;
-  /* Peso de fuente para el icono sólido */
-  font-style: normal;
 }
 
 .contador_like {
