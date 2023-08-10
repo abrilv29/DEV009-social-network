@@ -273,6 +273,21 @@ body {
   cursor: pointer;
 }
 
+.mensajeOlvidasteContraseña {
+  color: #fff;
+  font-size: 1em;
+  margin: 5px;
+}
+
+.recuperala {
+  color: #BB377D;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
 .btnLogin {
   width: 70%;
   height: 50px;
@@ -324,7 +339,7 @@ body {
   margin-top: 17px;
 }
 
-.btnGoogle {
+#formRegistro1 .btnGoogle {
   width: 70%;
   height: 50px;
   padding: 10px;
@@ -418,7 +433,58 @@ body {
   background-color: transparent;
   border: none;
   margin-top: 10px;
+  position: relative;
+}
 
+.ventana_oculta {
+  display: none;
+  position: absolute;
+  width: 328px;
+  height: 340px;
+  background-color: #1c1e21;
+  border-radius: 8px;
+  padding: 10px;
+  margin-left: -100px;
+}
+
+.cerrar_sesion {
+  display: flex;
+  cursor: pointer;
+  color: #fff;
+  justify-content: center;
+  margin: 5px;
+}
+
+.cerrar_sesion i {
+  border-radius: 50%;
+  background-color: #505050;
+  padding: 8px;
+  margin-right: 5px;
+}
+
+.email_google {
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  margin: 5px;
+}
+
+.name_google {
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  margin: 5px;
+}
+
+.foto_google {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  /* Hace que la imagen tenga forma circular */
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  /* Centrar horizontalmente */
 }
 
 /*acaba la parte de al darle click al muñequito*/
@@ -514,7 +580,6 @@ button {
   background: #BB377D;
   box-shadow: 0px 4px 35px -5px #BB377D;
   color: aliceblue;
-  >>>>>>>f94bacb696d8b033db99c0a0857bf0bb44b9ea91
 }
 
 /* .feed_new_post:hover {
@@ -544,9 +609,9 @@ section.like_edit_delete {
   grid-template-columns: 10% 10% 10% 10%;
 }
 
-button.icono_like,
-button.icono_edit,
-button.icono_delete {
+.icono_like,
+.icono_edit,
+.icono_delete {
   background-color: transparent;
   font-size: 20px;
   color: #FBD3E9;
