@@ -97,10 +97,7 @@ export function registroView() {
   /* -------------------------- Regreso a la vista de  login ------------------------- */
   /* Si ya tieenes una  cuenta registrada te redirecciona a Login */
   textRegreso.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+    window.location.href = `${window.location.origin}/`;
   });
   /* -------------------------- Login con cuenta de Google ------------------------- */
   /* Al momento de dar clic en el icono Google se dispara la funcion de Google LoginWithGoogle
