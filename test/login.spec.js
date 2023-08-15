@@ -1,10 +1,8 @@
-import { expect, jest, test } from '@jest/globals';
+import { loginView } from '../src/component/login.js';
+// import { loginView } from '../src/controller/loginController.js';
 
-// Prueba filtrado por rol (luchador)
-describe('filtroLuchador retorna los campeones con el tags Fighter (rol luchador)', () => {
-  // it = el
-  it('Debería retornar una función', () => {
-    expect(typeof filtroLuchador).toBe('function');
-    // expect = espera         toBe = es
+describe('loginView es una function', () => {
+  it('is a function', () => {
+    expect(typeof loginView).toBe('function');
   });
 });
