@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { getFirestore, collection, addDoc } from 'firebase/firestore';// Asegúrese de importar correctamente
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import * as userConexion from '../src/controller/registroController'; // Ajuste la ruta según su estructura
@@ -83,7 +82,7 @@ describe('conexionUser', () => {
     // redireccionamento al login
     expect(window.location.href).toBe(`${window.location.origin}/`);
   }); //
-  it('debería mostrar mensajes el correo se encuentra registrado', async () => {
+  it('debería mostrar mensaje el correo se encuentra registrado', async () => {
     const mockAuth = { createUserWithEmailAndPassword: jest.fn() };
     getAuth.mockReturnValue(mockAuth);
     createUserWithEmailAndPassword.mockRejectedValue({ code: 'auth/email-already-in-use' });
@@ -94,7 +93,7 @@ describe('conexionUser', () => {
     // Verifica que la función de mostrar error haya sido llamada con el mensaje correcto
     expect(showError).toHaveBeenCalledWith('El correo se encuentra registrado', 'repeat-email');
   }); //
-  it('debería mostrar mensajes de error si no coloca 6 caracteres en la contraña', async () => {
+  it('debería mostrar mensaje de error, si no coloca 6 caracteres en la contraña', async () => {
     const mockAuth = { createUserWithEmailAndPassword: jest.fn() };
     getAuth.mockReturnValue(mockAuth);
     createUserWithEmailAndPassword.mockRejectedValue({ code: 'auth/weak-password' });

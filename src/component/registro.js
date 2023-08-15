@@ -60,7 +60,9 @@ export function registroView() {
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
   // mensajes de error del registro cuenta
   const validaciones = createElement('div', '', formRegistro);
-  validaciones.id = 'error-container';
+  validaciones.setAttribute('id', 'error-container');
+  validaciones.style.display = 'none';
+  validaciones.textContent = '';
   validaciones.innerHTML = ` 
   <p id="repeat-password" style="display: none"> Las contraseñas no coinciden </p>
   <p id="repeat-email" style="display: none"> El correo se encuentra registrado </p>
@@ -102,7 +104,7 @@ export function registroView() {
   /* -------------------------- Login con cuenta de Google ------------------------- */
   /* Al momento de dar clic en el icono Google se dispara la funcion de Google LoginWithGoogle
     Se encuentra en login.controller.js */
-  btnGoogle.addEventListener('click', async () => {
+  btnGoogle.addEventListener('click', () => {
     btnGoogle.disabled = true;
     // Inicio de sesion con google
     loginWithGoogle();
