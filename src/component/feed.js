@@ -1,6 +1,6 @@
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerpost, addLiked, removeLiked,
+  guardarPost, traerpost, addLiked, removeLiked, menuToggle,
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
@@ -76,16 +76,64 @@ export function feedView(userDisplayName) {
   const sectionFeed = createElement('section', 'container_feed', '');
   // Seccion header feed
   const sectionHeader = createElement('section', 'section_header', sectionFeed);
+
   const divLogo = createElement('div', 'div_feed_logo', sectionHeader);
+
   const imagenLogo = createElement('img', 'feed_logo', divLogo);
   imagenLogo.src = '../img/logo-feed.png';
-  const divIcono = createElement('div', 'div_icono', sectionHeader);
-  const iconoPerfil = createElement('button', 'icono_perfil', divIcono);
-  iconoPerfil.innerHTML = '<i class="fa-solid fa-user" style="color: #FBD3E9;"></i>';
-  // Seccion para cerrar la sesion
-  const ventanaIcono = createElement('div', 'ventana_oculta', divIcono);
-  const cerrarSesion = createElement('div', 'cerrar_sesion', ventanaIcono);
+
+  /// /////////         VENTANA DEL PERFIL DE   USUARIO          //////////////7//
+  const perfil = createElement('div', 'perfil', sectionHeader);
+  const divImg = createElement('div', 'div-img', perfil);
+  divImg.onclick = menuToggle;
+
+  // Supongamos que obtienes la URL de la imagen en las siguientes situaciones
+  const userImageUrlGoogle = localStorage.getItem('userImage');
+  const userImageUrlNormal = 'https://i.pinimg.com/originals/c4/65/62/c4656285efaf79db6656623636a84c79.jpg';
+
+  const imagenPerfil = createElement('img', 'imagen-perfil', divImg);
+  const isGoogleUser = true; // Lógica para determinar si el usuario inició sesión con Google
+
+  if (isGoogleUser) {
+  // Si es un usuario de Google, obtén la URL de la imagen de perfil de Firebase y actúala
+    const userImageUrl = userImageUrlGoogle;
+    localStorage.setItem('userImage', userImageUrl); // Guarda la URL en localStorage
+    imagenPerfil.src = userImageUrl;
+  } else {
+    const userImageUrl = userImageUrlNormal;
+    localStorage.setItem('userImage', userImageUrl); // Guarda la URL en localStorage
+    imagenPerfil.src = userImageUrl;
+  }
+
+  const infoPerfil = createElement('div', 'info-perfil', perfil);
+
+  const nameGoogle = createElement('div', 'name_google', infoPerfil);
+  nameGoogle.textContent = localStorage.getItem('userDisplayName');
+
+  const emailGoogle = createElement('div', 'email_google', infoPerfil);
+  emailGoogle.textContent = localStorage.getItem('userGmail');
+
+  const cerrarSesion = createElement('div', 'cerrar_sesion', infoPerfil);
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
+
+  /// /////////////////////
+  // const cerrarSesion = createElement('div', 'cerrar_sesion', ventanaIcono);
+  // cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
+  // Cerrar la sesion del usuario
+  // Agregar evento click al divIcono
+
+  // // iconoPerfil.addEventListener('click', () => {
+  // //   if (ventanaIcono) {
+  // //     ventanaIcono.style.display = ventanaIcono.style.display === 'none' ? 'block' : 'none';
+  // //   }
+  // // });
+
+  // Agregar evento click al botón 'cerrarSesion'
+  cerrarSesion.addEventListener('click', () => {
+    window.history.pushState({}, '', `${window.location.origin}/`);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.location.reload();
+  });
 
   // Seccion publicar post
   const sectionPost = createElement('section', 'section_post', sectionFeed);
@@ -109,21 +157,6 @@ export function feedView(userDisplayName) {
 
   createElement('section', 'section_publicaciones', sectionFeed);
   dibujarPosts();
-
-  // Cerrar la sesion del usuario
-  // Agregar evento click al divIcono
-  iconoPerfil.addEventListener('click', () => {
-    if (ventanaIcono) {
-      ventanaIcono.style.display = ventanaIcono.style.display === 'none' ? 'block' : 'none';
-    }
-  });
-
-  // Agregar evento click al botón 'cerrarSesion'
-  cerrarSesion.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
-  });
 
   // Publicar post
   buttonPublicar.addEventListener('click', async () => {

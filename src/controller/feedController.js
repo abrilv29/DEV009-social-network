@@ -50,3 +50,8 @@ export async function removeLiked(userId, idPost) {
     likes: arrayRemove(userId),
   });
 }
+
+export function menuToggle() {
+  const toggleMenu = document.querySelector('.info-perfil');
+  toggleMenu.classList.toggle('active');
+}
