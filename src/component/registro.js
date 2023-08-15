@@ -59,11 +59,9 @@ export function registroView() {
   const btnGoogle = createElement('button', 'btnGoogle', formRegistro);
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
   // mensajes de error del registro cuenta
-  const validaciones = createElement('div', '', formRegistro);
-  validaciones.setAttribute('id', 'error-container');
-  validaciones.style.display = 'none';
-  validaciones.textContent = '';
-  validaciones.innerHTML = ` 
+  const errorContainer = createElement('div', '', formRegistro);
+  errorContainer.setAttribute('id', 'error-container');
+  errorContainer.innerHTML = ` 
   <p id="repeat-password" style="display: none"> Las contraseñas no coinciden </p>
   <p id="repeat-email" style="display: none"> El correo se encuentra registrado </p>
   <p id="emailError" style="display: none"> Formato de correo invalido </p>
