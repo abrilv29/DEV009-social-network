@@ -10,7 +10,7 @@ import { app } from '../lib/config-firebase.js';
 const conexioBD = getFirestore(app);
 
 export const addUser = (nombre, email) => {
-  addDoc(collection(conexioBD, 'Users'), {
+  addDoc(collection(conexioBD, 'userRegistre'), {
     name: nombre,
     email,
   });
@@ -19,7 +19,7 @@ export const addUser = (nombre, email) => {
 // Registro de usuarios usando el formulario de registro
 
 export const conexionUser = async (nombre, email, password) => {
-  const auth = getAuth(app);
+  const auth = getAuth();
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     addUser(nombre, email);
@@ -27,10 +27,7 @@ export const conexionUser = async (nombre, email, password) => {
     const user = userCredential.user;
     const userName = nombre; // Usamos el nombre proporcionado en el formulario
     updateProfile(user, { displayName: userName });
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+    window.location.href = `${window.location.origin}/`;
     return userCredential;
   } catch (error) {
     const errorCode = error.code;

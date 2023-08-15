@@ -59,9 +59,9 @@ export function registroView() {
   const btnGoogle = createElement('button', 'btnGoogle', formRegistro);
   btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
   // mensajes de error del registro cuenta
-  const validaciones = createElement('div', '', formRegistro);
-  validaciones.id = 'error-container';
-  validaciones.innerHTML = ` 
+  const errorContainer = createElement('div', '', formRegistro);
+  errorContainer.setAttribute('id', 'error-container');
+  errorContainer.innerHTML = ` 
   <p id="repeat-password" style="display: none"> Las contraseñas no coinciden </p>
   <p id="repeat-email" style="display: none"> El correo se encuentra registrado </p>
   <p id="emailError" style="display: none"> Formato de correo invalido </p>
@@ -97,15 +97,12 @@ export function registroView() {
   /* -------------------------- Regreso a la vista de  login ------------------------- */
   /* Si ya tieenes una  cuenta registrada te redirecciona a Login */
   textRegreso.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+    window.location.href = `${window.location.origin}/`;
   });
   /* -------------------------- Login con cuenta de Google ------------------------- */
   /* Al momento de dar clic en el icono Google se dispara la funcion de Google LoginWithGoogle
     Se encuentra en login.controller.js */
-  btnGoogle.addEventListener('click', async () => {
+  btnGoogle.addEventListener('click', () => {
     btnGoogle.disabled = true;
     // Inicio de sesion con google
     loginWithGoogle();
