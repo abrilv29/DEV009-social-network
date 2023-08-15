@@ -13,6 +13,8 @@ export const loginUser = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     // Almacenar el nombre de usuario en el localStorage
     localStorage.setItem('userDisplayName', userCredential.user.displayName);
+    // Almacenar el correo electrónico del usuario en el localStorage
+    localStorage.setItem('userGmail', userCredential.user.email);
     // Almacenar el id del usuario en el localStorage
     localStorage.setItem('userId', userCredential.user.uid);
     // Signed in

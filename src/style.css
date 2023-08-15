@@ -428,55 +428,23 @@ body {
 
 
 /***********parte de al darle click al muñequito******************/
-.icono_perfil {
-  font-size: 40px;
-  background-color: transparent;
-  border: none;
-  margin-top: 10px;
+
+.perfil {
+  margin-top: 16px;
+  margin-left: 70px;
   position: relative;
 }
 
-.ventana_oculta {
-  display: none;
-  position: absolute;
-  width: 328px;
-  height: 340px;
-  background-color: #1c1e21;
-  border-radius: 8px;
-  padding: 10px;
-  margin-left: -100px;
-}
-
-.cerrar_sesion {
-  display: flex;
-  cursor: pointer;
-  color: #fff;
-  justify-content: center;
-  margin: 5px;
-}
-
-.cerrar_sesion i {
+.div-img {
+  position: relative;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
-  background-color: #505050;
-  padding: 8px;
-  margin-right: 5px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.email_google {
-  display: flex;
-  color: #fff;
-  justify-content: center;
-  margin: 5px;
-}
-
-.name_google {
-  display: flex;
-  color: #fff;
-  justify-content: center;
-  margin: 5px;
-}
-
-.foto_google {
+.imagen-perfil {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -485,6 +453,67 @@ body {
   background-position: center;
   margin: 0 auto;
   /* Centrar horizontalmente */
+}
+
+.info-perfil {
+  position: absolute;
+  top: 120px;
+  right: -10px;
+  padding: 10px 20px;
+  background-color: #fff;
+  width: 200px;
+  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.info-perfil.active {
+  top: 60px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.info-perfil::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  transform: rotate(45deg);
+}
+
+.name_google {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #000;
+}
+
+.email_google {
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+}
+
+.cerrar_sesion {
+  display: flex;
+  cursor: pointer;
+  color: #000;
+  justify-content: center;
+  margin: 5px;
+  font-size: 1em;
+}
+
+.cerrar_sesion i {
+  border-radius: 50%;
+  background-color: #505050;
+  color: #fff;
+  padding: 8px;
+  margin-right: 5px;
 }
 
 /*acaba la parte de al darle click al muñequito*/
@@ -641,4 +670,23 @@ section.like_edit_delete {
   .icono_perfil {
     font-size: 35px;
   }
+}
+
+
+
+
+
+.div_icono {
+  margin: auto;
+}
+
+.icono_perfil {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  /* Hace que la imagen tenga forma circular */
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  /* Centrar horizontalmente */
 }
