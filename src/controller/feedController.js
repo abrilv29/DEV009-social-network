@@ -32,26 +32,25 @@ export async function traerpost() {
   return documentos;
 }
 
-// ...
-
 // Likes
-export async function addLiked(userId, idPost) {
+export async function addLiked(userId, idPost, counter) {
   const documentoPosts = doc(db, 'posts', idPost);
+  const contador = counter + 1;
   // Atomically add a new usuario to the "likes" array field.
   await updateDoc(documentoPosts, {
     likes: arrayUnion(userId),
+    counter: contador,
   });
+  return contador;
 }
 
-export async function removeLiked(userId, idPost) {
+export async function removeLiked(userId, idPost, counter) {
   const documentoPosts = doc(db, 'posts', idPost);
+  const contador = counter - 1;
   // Atomically remove a usuario from the "likes" array field.
   await updateDoc(documentoPosts, {
     likes: arrayRemove(userId),
+    counter: contador,
   });
-}
-
-export function menuToggle() {
-  const toggleMenu = document.querySelector('.info-perfil');
-  toggleMenu.classList.toggle('active');
+  return contador;
 }
