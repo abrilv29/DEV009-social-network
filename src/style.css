@@ -404,8 +404,6 @@ body {
   max-width: 1000px;
   margin: 2px auto;
   height: 100%;
-  /* display: grid; */
-  /* grid-auto-rows: 10% 25% 65%; */
   background-color: black;
 }
 
@@ -425,9 +423,8 @@ body {
 
 /*-------------Parte de al darle click al perfil----------*/
 
-.perfil {
-  margin-top: 16px;
-  margin-left: 70px;
+.perfil { 
+  margin:auto;
   position: relative;
 }
 
@@ -650,9 +647,6 @@ section.like_edit_delete {
     height: 50px;
   }
 
-  .icono_perfil {
-    font-size: 35px;
-  }
   section.like_edit_delete {
     grid-template-columns: 5% 7% 5% 10%;
   }
