@@ -404,8 +404,6 @@ body {
   max-width: 1000px;
   margin: 2px auto;
   height: 100%;
-  /* display: grid; */
-  /* grid-auto-rows: 10% 25% 65%; */
   background-color: black;
 }
 
@@ -423,15 +421,10 @@ body {
   height: 60px;
 }
 
+/*-------------Parte de al darle click al perfil----------*/
 
-
-
-
-/***********parte de al darle click al muñequito******************/
-
-.perfil {
-  margin-top: 16px;
-  margin-left: 70px;
+.perfil { 
+  margin:auto;
   position: relative;
 }
 
@@ -516,12 +509,7 @@ body {
   margin-right: 5px;
 }
 
-/*acaba la parte de al darle click al muñequito*/
-
-
-
-
-
+/*--------Seccion del post---------*/
 .section_post {
   width: 100%;
   height: auto;
@@ -535,7 +523,6 @@ body {
 .section_text {
   display: flex;
   align-items: center;
-  /* flex-direction: row; */
 }
 
 .boton_camara {
@@ -584,7 +571,6 @@ body {
   margin: 10px 0px 0 10px;
 }
 
-/*---Pendiente por revisar estilos en button---*/
 button {
   width: 95%;
   height: auto;
@@ -611,15 +597,9 @@ button {
   color: aliceblue;
 }
 
-/* .feed_new_post:hover {
-  background-color: #ebd6e1;
-  color: grey;
-} */
-
 .section_publicaciones {
   width: 100%;
   height: auto;
-  /* background-color: #4B4355; */
   border-radius: 8px;
   display: grid;
 }
@@ -667,26 +647,19 @@ section.like_edit_delete {
     height: 50px;
   }
 
-  .icono_perfil {
-    font-size: 35px;
+  section.like_edit_delete {
+    grid-template-columns: 5% 7% 5% 10%;
   }
 }
 
-
-
-
-
-.div_icono {
-  margin: auto;
+@media (min-width: 350px) and (max-width:760px){
+  section.like_edit_delete {
+    grid-template-columns: 11% 11% 10% 10%;
+  }
 }
 
-.icono_perfil {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  /* Hace que la imagen tenga forma circular */
-  background-size: cover;
-  background-position: center;
-  margin: 0 auto;
-  /* Centrar horizontalmente */
+@media (max-width: 330px){
+  section.like_edit_delete {
+    grid-template-columns: 13% 13% 13% 10%;
+  }
 }

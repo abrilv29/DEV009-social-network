@@ -11,6 +11,10 @@ export const loginUser = async (email, password) => {
   try {
     const auth = getAuth(app);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+    // Guardar la URL de la imagen de perfil en el LocalStorage (usar la URL predeterminada)
+    const userImageUrl = '../img/perfil-usuario.jpg';
+    localStorage.setItem('userImage', userImageUrl);
     // Almacenar el nombre de usuario en el localStorage
     localStorage.setItem('userDisplayName', userCredential.user.displayName);
     // Almacenar el correo electrónico del usuario en el localStorage

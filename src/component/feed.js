@@ -1,6 +1,6 @@
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerpost, addLiked, removeLiked, menuToggle,
+  guardarPost, traerpost, addLiked, removeLiked,
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
@@ -32,26 +32,27 @@ function createPost(datos, index, publicaciones) {
 
   iconoLike.setAttribute('data-id', datos.id);
   const contador = createElement('p', 'contador_like', sectionInteracion);
-  // index = indice de cada publicacion en el array de likes
-  contador.innerHTML = publicaciones[index].likes.length;
+  // index = indice de cada publicacion en el contador
+  contador.innerHTML = publicaciones[index].counter;
 
   // Click al icono like
   iconoLike.addEventListener('click', async (e) => {
-    // debugger;
     const postLikes = publicaciones[index].likes;
     const idPost = e.target.dataset.id;
 
     if (postLikes.includes(localStorage.getItem('userId'))) {
-      await removeLiked(localStorage.getItem('userId'), idPost);
-      contador.innerHTML = postLikes.length - 1;
+      const contadorLikes = await removeLiked(localStorage.getItem('userId'), idPost, datos.counter);
+      contador.innerHTML = contadorLikes;
       const likesFiltrados = postLikes.filter((likes) => likes !== localStorage.getItem('userId'));
       publicaciones[index].likes = likesFiltrados;
+      publicaciones[index].counter = contadorLikes;
       iconoLike.classList.add('fa-regular');
       iconoLike.classList.remove('fa-solid');
     } else {
-      await addLiked(localStorage.getItem('userId'), idPost);
-      contador.innerHTML = postLikes.length + 1;
+      const contadorLikes = await addLiked(localStorage.getItem('userId'), idPost, datos.counter);
+      contador.innerHTML = contadorLikes;
       publicaciones[index].likes.push(localStorage.getItem('userId'));
+      publicaciones[index].counter = contadorLikes;
       iconoLike.classList.remove('fa-regular');
       iconoLike.classList.add('fa-solid');
     }
@@ -76,33 +77,31 @@ export function feedView(userDisplayName) {
   const sectionFeed = createElement('section', 'container_feed', '');
   // Seccion header feed
   const sectionHeader = createElement('section', 'section_header', sectionFeed);
-
   const divLogo = createElement('div', 'div_feed_logo', sectionHeader);
-
   const imagenLogo = createElement('img', 'feed_logo', divLogo);
   imagenLogo.src = '../img/logo-feed.png';
 
-  /// /////////         VENTANA DEL PERFIL DE   USUARIO          //////////////7//
+  function menuToggle() {
+    const toggleMenu = document.querySelector('.info-perfil');
+    toggleMenu.classList.toggle('active');
+  }
+
+  // VENTANA DEL PERFIL DE   USUARIO
+
   const perfil = createElement('div', 'perfil', sectionHeader);
   const divImg = createElement('div', 'div-img', perfil);
   divImg.onclick = menuToggle;
 
   // Supongamos que obtienes la URL de la imagen en las siguientes situaciones
-  const userImageUrlGoogle = localStorage.getItem('userImage');
-  const userImageUrlNormal = 'https://i.pinimg.com/originals/c4/65/62/c4656285efaf79db6656623636a84c79.jpg';
-
+  const userImageUrlNormal = '../img/perfil-usuario.jpg';
   const imagenPerfil = createElement('img', 'imagen-perfil', divImg);
-  const isGoogleUser = true; // Lógica para determinar si el usuario inició sesión con Google
 
-  if (isGoogleUser) {
-  // Si es un usuario de Google, obtén la URL de la imagen de perfil de Firebase y actúala
-    const userImageUrl = userImageUrlGoogle;
-    localStorage.setItem('userImage', userImageUrl); // Guarda la URL en localStorage
-    imagenPerfil.src = userImageUrl;
+  // Obtén la imagen de perfil del LocalStorage (si existe)
+  const userImageUrlGoogle = localStorage.getItem('userImage');
+  if (userImageUrlGoogle) {
+    imagenPerfil.src = userImageUrlGoogle;
   } else {
-    const userImageUrl = userImageUrlNormal;
-    localStorage.setItem('userImage', userImageUrl); // Guarda la URL en localStorage
-    imagenPerfil.src = userImageUrl;
+    imagenPerfil.src = userImageUrlNormal;
   }
 
   const infoPerfil = createElement('div', 'info-perfil', perfil);
@@ -116,18 +115,6 @@ export function feedView(userDisplayName) {
   const cerrarSesion = createElement('div', 'cerrar_sesion', infoPerfil);
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
 
-  /// /////////////////////
-  // const cerrarSesion = createElement('div', 'cerrar_sesion', ventanaIcono);
-  // cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
-  // Cerrar la sesion del usuario
-  // Agregar evento click al divIcono
-
-  // // iconoPerfil.addEventListener('click', () => {
-  // //   if (ventanaIcono) {
-  // //     ventanaIcono.style.display = ventanaIcono.style.display === 'none' ? 'block' : 'none';
-  // //   }
-  // // });
-
   // Agregar evento click al botón 'cerrarSesion'
   cerrarSesion.addEventListener('click', () => {
     window.history.pushState({}, '', `${window.location.origin}/`);
@@ -140,7 +127,6 @@ export function feedView(userDisplayName) {
   // Seccion mensaje de bienvenida
   const mensajeBienvenida = createElement('h2', 'mensaje_bienvenida', sectionPost);
   mensajeBienvenida.innerHTML = `Bienvenid@ ${userDisplayName}`;
-  console.log('Nombre de usuario en feedView:', userDisplayName);
 
   const divPost = createElement('div', 'post', sectionPost);
   const divInput = createElement('div', 'section_text', divPost);
@@ -173,6 +159,7 @@ export function feedView(userDisplayName) {
         created_date: new Date(),
         post: valuePublicacion,
         likes: [],
+        counter: 0,
       };
       inputPublicacion.value = '';
       await guardarPost(datos);
