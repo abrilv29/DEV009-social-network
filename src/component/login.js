@@ -1,5 +1,5 @@
 import { createElement } from '../utils/utils';
-import { loginUser, loginWithGoogle } from '../controller/loginController.js';
+import { loginUser, loginWithGoogle, checkAndRedirect } from '../controller/loginController.js';
 
 export function loginView() {
   const content = document.createElement('main');
@@ -84,6 +84,7 @@ export function loginView() {
       const user = await loginUser(email, password);
       localStorage.setItem('userDisplayName', user); // Almacenar el nombre de usuario en el LocalStorage
       window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed;
+      checkAndRedirect();
     } catch (error) {
       console.log(error);
       // Manejo de errores
@@ -95,5 +96,6 @@ export function loginView() {
   btnGoogle.addEventListener('click', () => {
     loginWithGoogle();
   });
+  checkAndRedirect();
   return content;
 }// loginView

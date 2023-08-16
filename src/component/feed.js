@@ -1,7 +1,9 @@
+/* eslint-disable import/no-cycle */
 import { createElement } from '../utils/utils';
 import {
   guardarPost, traerpost, addLiked, removeLiked,
 } from '../controller/feedController';
+import { logout } from '../controller/loginController.js';
 
 // Funcion crear publicaciones
 function createPost(datos, index, publicaciones) {
@@ -116,10 +118,11 @@ export function feedView(userDisplayName) {
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
 
   // Agregar evento click al botón 'cerrarSesion'
-  cerrarSesion.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+  cerrarSesion.addEventListener('click', async () => {
+    await logout(); // Llama a la función logout() para cerrar la sesión
+    console.log('Botón de cerrar sesión clickeado');
+    localStorage.clear();
+    window.location.href = `${window.location.origin}/`;
   });
 
   // Seccion publicar post
