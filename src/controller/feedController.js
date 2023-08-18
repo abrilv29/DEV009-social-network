@@ -54,3 +54,18 @@ export async function removeLiked(userId, idPost, counter) {
   });
   return contador;
 }
+// editar el post
+
+export async function editPost(idPost, editedContent) {
+  const documentoPosts = doc(db, 'posts', idPost);
+  await updateDoc(documentoPosts, {
+    post: editedContent,
+  });
+}
+
+export async function saveEditedPost(idPost, editedContent) {
+  const documentoPosts = doc(db, 'posts', idPost);
+  await updateDoc(documentoPosts, {
+    post: editedContent,
+  });
+}
