@@ -1,10 +1,10 @@
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerpost, addLiked, removeLiked,
+  guardarPost, traerPost, addLiked, removeLiked,
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
-function createPost(datos, index, publicaciones) {
+export function createPost(datos, index, publicaciones) {
   const sectionPublicaciones = document.querySelector('.section_publicaciones');
   const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
   const name = createElement('p', 'name_user', divPublicacion);
@@ -15,12 +15,14 @@ function createPost(datos, index, publicaciones) {
   const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
   // Verficamos si el autor de la publicacion es el mismo del Local Storage
   if (datos.userId === localStorage.getItem('userId')) {
-    // Bonton edit
-    const botonEdit = createElement('button', 'icono_edit', sectionInteracion);
-    botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
-    // Boton delete
-    const botonDelete = createElement('button', 'icono_delete', sectionInteracion);
-    botonDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+    // Icono edit
+    const iconoEdit = createElement('i', 'icono_edit', sectionInteracion);
+    iconoEdit.classList.add('fa-regular');
+    iconoEdit.classList.add('fa-pen-to-square');
+    // Icono delete
+    const iconoDelete = createElement('i', 'icono_delete', sectionInteracion);
+    iconoDelete.classList.add('fa-solid');
+    iconoDelete.classList.add('fa-trash-can');
   }
   const iconoLike = createElement('i', 'icono_like', sectionInteracion);
   iconoLike.classList.add('fa-heart');
@@ -60,8 +62,9 @@ function createPost(datos, index, publicaciones) {
 }
 
 // Funcion dibujar posts
-async function dibujarPosts() {
-  const documentos = await traerpost();
+export async function dibujarPosts() {
+  debugger;
+  const documentos = await traerPost();
   // Se crea un objeto nuevo con la informacion de cada publicacion
   // (se cambia el querySnapshot por un array mas simple)
   const publicaciones = documentos.docs.map(

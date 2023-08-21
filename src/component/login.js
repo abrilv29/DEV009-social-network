@@ -44,7 +44,7 @@ export function loginView() {
   // boton de iniciar sesion
   const btnLogin = createElement('button', 'btnLogin', formElement);
   btnLogin.setAttribute('type', 'submit');
-  btnLogin.innerHTML = 'Iniciar Seción <i class="fa-solid fa-right-to-bracket"></i>';
+  btnLogin.innerHTML = 'Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i>';
 
   // recuperar contraseña
   const mensajeOlvidasteContraseña = createElement('p', 'mensajeOlvidasteContraseña', formElement);
