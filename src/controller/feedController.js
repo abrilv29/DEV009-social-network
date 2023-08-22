@@ -21,12 +21,12 @@ export async function guardarPost(datos) {
     // console.log('Document written with ID: ', documento.id);
     return documento;
   } catch (e) {
-    // console.error('Error adding document: ', e);
+    console.error('Error adding document: ', e);
   }
   return null;
 }
 
-export async function traerpost() {
+export async function traerPost() {
   const todosLosPosts = query(collection(db, 'posts'), orderBy('created_date', 'desc'));
   const documentos = await getDocs(todosLosPosts);
   return documentos;
