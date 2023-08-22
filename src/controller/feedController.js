@@ -19,7 +19,6 @@ const db = getFirestore(app);
 export async function guardarPost(datos) {
   try {
     const documento = await addDoc(collection(db, 'posts'), datos);
-    // console.log('Document written with ID: ', documento.id);
     return documento;
   } catch (e) {
     console.log('Error adding document: ', e);
@@ -57,10 +56,9 @@ export async function removeLiked(userId, idPost, counter) {
 }
 
 export async function deletePost(idPost) {
-  // debugger;
   try {
     await deleteDoc(doc(db, 'posts', idPost));
   } catch (e) {
-    console.log('Error al eliminar el documento:', e);
+    console.log('Error al eliminar el documento: ', e);
   }
 }

@@ -71,7 +71,6 @@ export function createPost(datos, index, publicaciones) {
 
 // Funcion dibujar posts
 export async function dibujarPosts() {
-  // debugger;
   const documentos = await traerPost();
   // Se crea un objeto nuevo con la informacion de cada publicacion
   // (se cambia el querySnapshot por un array mas simple)
@@ -116,13 +115,10 @@ export function feedView(userDisplayName) {
   }
 
   const infoPerfil = createElement('div', 'info-perfil', perfil);
-
   const nameGoogle = createElement('div', 'name_google', infoPerfil);
   nameGoogle.textContent = localStorage.getItem('userDisplayName');
-
   const emailGoogle = createElement('div', 'email_google', infoPerfil);
   emailGoogle.textContent = localStorage.getItem('userGmail');
-
   const cerrarSesion = createElement('div', 'cerrar_sesion', infoPerfil);
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
 
