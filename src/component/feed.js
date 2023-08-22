@@ -1,6 +1,6 @@
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerPost, addLiked, removeLiked,
+  guardarPost, traerPost, addLiked, removeLiked, deletePost,
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
@@ -23,6 +23,14 @@ export function createPost(datos, index, publicaciones) {
     const iconoDelete = createElement('i', 'icono_delete', sectionInteracion);
     iconoDelete.classList.add('fa-solid');
     iconoDelete.classList.add('fa-trash-can');
+    iconoDelete.setAttribute('data-id', datos.id);
+    iconoDelete.addEventListener('click', async (e) => {
+      const idPost = e.target.dataset.id;
+      if (window.confirm('¿Estás seguro de borrar la publicación?')) {
+        deletePost(idPost);
+        window.location.reload();
+      }
+    });
   }
   const iconoLike = createElement('i', 'icono_like', sectionInteracion);
   iconoLike.classList.add('fa-heart');
@@ -63,7 +71,7 @@ export function createPost(datos, index, publicaciones) {
 
 // Funcion dibujar posts
 export async function dibujarPosts() {
-  debugger;
+  // debugger;
   const documentos = await traerPost();
   // Se crea un objeto nuevo con la informacion de cada publicacion
   // (se cambia el querySnapshot por un array mas simple)

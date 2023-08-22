@@ -9,6 +9,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  deleteDoc,
 } from 'firebase/firestore';
 import { app } from '../lib/config-firebase';
 
@@ -21,7 +22,7 @@ export async function guardarPost(datos) {
     // console.log('Document written with ID: ', documento.id);
     return documento;
   } catch (e) {
-    console.error('Error adding document: ', e);
+    console.log('Error adding document: ', e);
   }
   return null;
 }
@@ -53,4 +54,13 @@ export async function removeLiked(userId, idPost, counter) {
     counter: contador,
   });
   return contador;
+}
+
+export async function deletePost(idPost) {
+  // debugger;
+  try {
+    await deleteDoc(doc(db, 'posts', idPost));
+  } catch (e) {
+    console.log('Error al eliminar el documento:', e);
+  }
 }

@@ -9,6 +9,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  deleteDoc,
 } from 'firebase/firestore';
 import * as feedController from '../src/controller/feedController';
 
@@ -24,10 +25,12 @@ jest.mock('firebase/firestore', () => ({
   updateDoc: jest.fn().mockReturnValue({}),
   arrayUnion: jest.fn().mockReturnValue([1234]),
   arrayRemove: jest.fn().mockReturnValue([]),
+  deleteDoc: jest.fn().mockReturnValue({}),
+
 }));
 
 describe('guardarPost', () => {
-  // Reinicie los mocks antes de cada prueba
+  // Reinicia los mocks antes de cada prueba
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -54,7 +57,6 @@ describe('guardarPost', () => {
 });
 
 describe('traerPost', () => {
-  // Reinicie los mocks antes de cada prueba
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -72,7 +74,7 @@ describe('traerPost', () => {
       {
         author: 'Manuela',
         userId: '1234',
-        created_date: '14 agosto 2023',
+        created_date: '16 agosto 2023',
         post: 'Hola',
         likes: '[1234]',
         counter: 0,
@@ -88,7 +90,6 @@ describe('traerPost', () => {
 });
 
 describe('addLiked', () => {
-  // Reinicie los mocks antes de cada prueba
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -99,12 +100,12 @@ describe('addLiked', () => {
     const documentoPost = {
       author: 'Manuela',
       userId: '1234',
-      created_date: '14 agosto 2023',
+      created_date: '17 agosto 2023',
       post: 'Hola',
       likes: [1234],
       counter: 1,
     };
-    doc.mockImplementation(() => documentoPost);
+    doc.mockImplementationOnce(() => documentoPost);
     const contador = await feedController.addLiked(userId, idPost, counter);
     expect(updateDoc).toHaveBeenCalledWith(documentoPost, { counter: contador, likes: [1234] });
     expect(arrayUnion).toHaveBeenCalledWith(userId);
@@ -113,7 +114,6 @@ describe('addLiked', () => {
 });
 
 describe('removeLiked', () => {
-  // Reinicie los mocks antes de cada prueba
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -124,15 +124,31 @@ describe('removeLiked', () => {
     const documentoPost = {
       author: 'Manuela',
       userId: '1234',
-      created_date: '14 agosto 2023',
+      created_date: '18 agosto 2023',
       post: 'Hola',
       likes: [1234],
       counter: 1,
     };
-    doc.mockImplementation(() => documentoPost);
+    doc.mockImplementationOnce(() => documentoPost);
     const contador = await feedController.removeLiked(userId, idPost, counter);
     expect(updateDoc).toHaveBeenCalledWith(documentoPost, { counter: contador, likes: [] });
     expect(arrayRemove).toHaveBeenCalledWith(userId);
     expect(contador).toBe(counter - 1);
+  });
+});
+
+describe('deletePost', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it('Deberia borrar un documento de la coleccion posts', async () => {
+    const idPost = '0SUGLXfz';
+    await feedController.deletePost(idPost);
+    expect(doc).toHaveBeenCalledWith({}, 'posts', idPost);
+    expect(deleteDoc).toHaveBeenCalledWith({});
+  });
+  it('deberia generar un error al borrar un documento de la coleccion posts', async () => {
+    deleteDoc.mockImplementation(() => { throw new Error('¡No se borro el documento!'); });
+    await feedController.deletePost();
   });
 });
