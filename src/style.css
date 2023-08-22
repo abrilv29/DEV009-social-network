@@ -526,7 +526,7 @@ body {
 }
 
 .boton_camara {
-  flex: 20%;
+  /* flex: 20%; */
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;
@@ -571,15 +571,6 @@ body {
   margin: 10px 0px 0 10px;
 }
 
-button {
-  width: 95%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  border: none;
-}
-
 .button_publicar {
   width: 25%;
   border-radius: 15px;
@@ -621,19 +612,16 @@ section.like_edit_delete {
 .icono_like,
 .icono_edit,
 .icono_delete {
-  background-color: transparent;
   font-size: 20px;
   color: #FBD3E9;
   max-width: 65px;
   height: 100%;
   padding: 5px 5px;
   margin: 0 5px;
-  justify-content: center;
   cursor: pointer;
 }
 
 .contador_like {
-  /* text-align: center; */
   width: 22px;
   color: #FBD3E9;
   font-size: 23px;
