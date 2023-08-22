@@ -9,6 +9,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  deleteDoc,
 } from 'firebase/firestore';
 import { app } from '../lib/config-firebase';
 
@@ -53,4 +54,13 @@ export async function removeLiked(userId, idPost, counter) {
     counter: contador,
   });
   return contador;
+}
+
+export async function deletePost(idPost) {
+  // debugger;
+  try {
+    await deleteDoc(doc(db, 'posts', idPost));
+  } catch (e) {
+    console.error('Error al eliminar el documento:', e);
+  }
 }
