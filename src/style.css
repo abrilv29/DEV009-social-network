@@ -526,7 +526,7 @@ body {
 }
 
 .boton_camara {
-  flex: 20%;
+  /* flex: 20%; */
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;

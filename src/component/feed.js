@@ -2,7 +2,7 @@
 /* eslint-disable no-inner-declarations */
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerpost, addLiked, removeLiked, editPost, saveEditedPost,
+  guardarPost, traerPost, addLiked, removeLiked, editPost, saveEditedPost,
 } from '../controller/feedController';
 import { uploadImg, getUrl } from '../controller/storageController';
 
@@ -130,7 +130,7 @@ function createPost(datos, index, publicaciones) {
 
 // Funcion dibujar posts
 async function dibujarPosts() {
-  const documentos = await traerpost();
+  const documentos = await traerPost();
   // Se crea un objeto nuevo con la informacion de cada publicacion
   // (se cambia el querySnapshot por un array mas simple)
   const publicaciones = documentos.docs.map(

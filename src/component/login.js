@@ -44,14 +44,7 @@ export function loginView() {
   // boton de iniciar sesion
   const btnLogin = createElement('button', 'btnLogin', formElement);
   btnLogin.setAttribute('type', 'submit');
-  btnLogin.innerHTML = 'Iniciar Seción <i class="fa-solid fa-right-to-bracket"></i>';
-
-  // recuperar contraseña
-  const mensajeOlvidasteContraseña = createElement('p', 'mensajeOlvidasteContraseña', formElement);
-  mensajeOlvidasteContraseña.textContent = '¿Olvidaste tu contraseña?';
-
-  const recuperala = createElement('a', 'recuperala', mensajeOlvidasteContraseña);
-  recuperala.textContent = 'Recupérala';
+  btnLogin.innerHTML = 'Iniciar Sesión <i class="fa-solid fa-right-to-bracket"></i>';
 
   // seccion del boton de registro cuenta de Google
   const btnGoogle = createElement('button', 'btnGoogle', formElement);
@@ -67,12 +60,10 @@ export function loginView() {
   const registrate = createElement('span', 'Registrate', mensajeNoTienesCuenta);
   registrate.textContent = 'Registrate';
 
-  /* -------------------------------Navegacion vista registro--------------------------------- */
+  // /* -------------------------------Navegacion vista registro--------------------------------- */
+  /* si no tienes cuenta registrate */
   registrate.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/registro`);
-    /* ----- Dispara manualmente el evento popstate para actualizar la ruta ----- */
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+    window.location.href = `${window.location.origin}/registro`;
   });
   /* -------------------------------Login Formulario--------------------------------- */
   formElement.addEventListener('submit', async (e) => {
@@ -94,6 +85,7 @@ export function loginView() {
   /** ---------------------Google------------------------------- */
   // Aquí modificamos el evento click del botón btnGoogle
   btnGoogle.addEventListener('click', () => {
+    btnGoogle.disabled = true;
     loginWithGoogle();
   });
   return content;
