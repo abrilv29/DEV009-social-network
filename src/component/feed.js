@@ -1,12 +1,14 @@
+/* eslint-disable no-inner-declarations */
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerPost, addLiked, removeLiked, deletePost,
+  guardarPost, traerpost, addLiked, removeLiked, editPost, saveEditedPost
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
 export function createPost(datos, index, publicaciones) {
   const sectionPublicaciones = document.querySelector('.section_publicaciones');
   const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
+
   const name = createElement('p', 'name_user', divPublicacion);
   name.innerHTML = datos.author;
   const textarea = createElement('textarea', 'textarea_publicacion', divPublicacion);
@@ -15,6 +17,70 @@ export function createPost(datos, index, publicaciones) {
   const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
   // Verficamos si el autor de la publicacion es el mismo del Local Storage
   if (datos.userId === localStorage.getItem('userId')) {
+
+    /* --------------------- Boton Editar Post ----------------*/
+    // Bonton edit
+    const botonEdit = createElement('button', 'icono_edit', sectionInteracion);
+    botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+
+    // edit post
+    function showEditField(textareaElement) {
+      textareaElement.removeAttribute('disabled');
+      textareaElement.focus(); // Enfocar automáticamente en el textarea para facilitar la edición
+      textareaElement.addEventListener('input', async () => {
+        const editedContent = textareaElement.value;
+        await editPost(datos.id, editedContent);
+        // No necesitas actualizar la interfaz ya que el contenido se actualiza en tiempo real
+      });
+      textareaElement.addEventListener('blur', () => {
+        textareaElement.setAttribute('disabled', '');
+        textareaElement.removeEventListener('input', null); // Eliminar el event listener para evitar fugas de memoria
+      });
+    }
+    // Crear el botón de cancelar
+    const botonCancel = createElement('button', 'icono_cancelar', sectionInteracion);
+    botonCancel.innerHTML = '<i class="fa-solid fa-rectangle-xmark"></i>';
+    botonCancel.style.display = 'none'; // Inicialmente oculto
+
+    let originalContent = ''; // Variable para almacenar el contenido original
+
+    botonCancel.addEventListener('click', () => {
+      // Restaurar el contenido original y desactivar la edición
+      textarea.value = originalContent;
+      textarea.setAttribute('disabled', '');
+      botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+      botonEdit.classList.remove('editing');
+      botonCancel.style.display = 'none';
+    });
+
+    botonEdit.addEventListener('click', () => {
+      if (botonEdit.classList.contains('editing')) {
+        // Guardar los cambios
+        const editedContent = textarea.value;
+        saveEditedPost(datos.id, editedContent)
+          .then(() => {
+            // Actualizar la interfaz después de guardar
+            textarea.setAttribute('disabled', '');
+            botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+            botonEdit.classList.remove('editing');
+            botonCancel.style.display = 'none'; // Ocultar el botón Cancelar
+          })
+          .catch((error) => {
+            console.error('Error al guardar los cambios:', error);
+          });
+      } else {
+        // Activar modo de edición
+        originalContent = textarea.value; // Almacenar el contenido original
+        showEditField(textarea, datos.post);
+        botonEdit.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
+        botonEdit.classList.add('editing');
+        botonCancel.style.display = 'block'; // Mostrar el botón Cancelar
+      }
+    });
+    // Boton delete
+    const botonDelete = createElement('button', 'icono_delete', sectionInteracion);
+    botonDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+
     // Icono edit
     const iconoEdit = createElement('i', 'icono_edit', sectionInteracion);
     iconoEdit.classList.add('fa-regular');
@@ -31,7 +97,9 @@ export function createPost(datos, index, publicaciones) {
         window.location.reload();
       }
     });
+
   }
+  /* ------------------------- Funcion de likes --------------------------------*/
   const iconoLike = createElement('i', 'icono_like', sectionInteracion);
   iconoLike.classList.add('fa-heart');
   if (datos.likes.includes(localStorage.getItem('userId'))) {
@@ -123,10 +191,9 @@ export function feedView(userDisplayName) {
   cerrarSesion.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion';
 
   // Agregar evento click al botón 'cerrarSesion'
-  cerrarSesion.addEventListener('click', () => {
-    window.history.pushState({}, '', `${window.location.origin}/`);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.location.reload();
+  cerrarSesion.addEventListener('click', async () => {
+    console.log('Botón de cerrar sesión clickeado');
+    window.location.href = `${window.location.origin}/`;
   });
 
   // Seccion publicar post
@@ -141,8 +208,8 @@ export function feedView(userDisplayName) {
   inputPublicacion.setAttribute('type', 'text');
   inputPublicacion.setAttribute('required', '');
   inputPublicacion.setAttribute('placeholder', 'Escribe algo...');
-  const button = createElement('button', 'boton_camara', divInput);
-  button.innerHTML = '<i class="fa-solid fa-camera"></i>';
+  const btnCamara = createElement('button', 'boton_camara', divInput);
+  btnCamara.innerHTML = '<i class="fa-solid fa-camera"></i>';
   const divButtons = createElement('div', 'section_button', divPost);
   const buttonPublicar = createElement('button', 'button_publicar', divButtons);
   buttonPublicar.textContent = 'Publicar';
@@ -151,6 +218,7 @@ export function feedView(userDisplayName) {
   createElement('section', 'section_publicaciones', sectionFeed);
   dibujarPosts();
 
+  /* --------------------------------Crear publicacion con texto ------------------------------*/
   // Publicar post
   buttonPublicar.addEventListener('click', async () => {
     const valuePublicacion = inputPublicacion.value;
