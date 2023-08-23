@@ -1,6 +1,10 @@
 import {
   getAuth,
-  signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  setPersistence,
+  browserLocalPersistence,
 } from 'firebase/auth';
 import { app } from '../lib/config-firebase.js';
 
@@ -11,6 +15,8 @@ export const loginUser = async (email, password) => {
   try {
     const auth = getAuth(app);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    // Configura la persistencia de sesión en "Sesión Permanente"
+    await setPersistence(auth, browserLocalPersistence);
 
     // Guardar la URL de la imagen de perfil en el LocalStorage (usar la URL predeterminada)
     const userImageUrl = '../img/perfil-usuario.jpg';
@@ -26,6 +32,9 @@ export const loginUser = async (email, password) => {
     localStorage.setItem('accessToken', token);
     const emailToken = userCredential.user.email;
     localStorage.setItem('email', emailToken);
+    const tokenSession = userCredential.user.accessToken;
+    sessionStorage.setItem('userToken', tokenSession);
+    console.log(tokenSession);
     const userName = userCredential.user.displayName;
     return userName; // Devolvemos el nombre de usuario
     // ...

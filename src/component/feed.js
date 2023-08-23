@@ -1,19 +1,25 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable no-inner-declarations */
 import { createElement } from '../utils/utils';
 import {
-<<<<<<< HEAD
   guardarPost, traerPost, addLiked, removeLiked, editPost, saveEditedPost, deletePost,
-=======
-  guardarPost, traerPost, addLiked, removeLiked, editPost, saveEditedPost,
->>>>>>> a014d37b1c968cd70b93b3eae1bf1550e09b330b
 } from '../controller/feedController';
 import { uploadImg, getUrl } from '../controller/storageController';
 
+/* ------------------------- Creacion del Post --------------------------------*/
 // Funcion crear publicaciones
 function createPost(datos, index, publicaciones) {
   const sectionPublicaciones = document.querySelector('.section_publicaciones');
   const divPublicacion = createElement('div', 'container_publicacion', sectionPublicaciones);
+  const name = createElement('p', 'name_user', divPublicacion);
+  name.innerHTML = datos.author;
+
+  // texto
+  const textContainer = createElement('div', 'text-container', divPublicacion);
+  const textarea = createElement('textarea', 'textarea_publicacion', textContainer);
+  textarea.setAttribute('disabled', '');
+  textarea.value = datos.post;
 
   // imagen
   // Mostrar la imagen si existe la URL de la imagen
@@ -28,16 +34,11 @@ function createPost(datos, index, publicaciones) {
     uploadedImage.style.display = 'none';
   }
 
-  const name = createElement('p', 'name_user', divPublicacion);
-  name.innerHTML = datos.author;
-  const textContainer = createElement('div', 'text-container', divPublicacion);
-  const textarea = createElement('textarea', 'textarea_publicacion', textContainer);
-  textarea.value = datos.post;
-
   const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
+
+  /* ------------------------- Boton Editar Post ------------------------------*/
   // Verficamos si el autor de la publicacion es el mismo del Local Storage
   if (datos.userId === localStorage.getItem('userId')) {
-    /* --------------------- Boton Editar Post ----------------*/
     // Bonton edit
     const botonEdit = createElement('button', 'icono_edit', sectionInteracion);
     botonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
@@ -90,31 +91,24 @@ function createPost(datos, index, publicaciones) {
       }
     });
 
-    // Boton delete
-    const botonDelete = createElement('button', 'icono_delete', sectionInteracion);
-    botonDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-<<<<<<< HEAD
-
-    // Icono edit
-    const iconoEdit = createElement('i', 'icono_edit', sectionInteracion);
-    iconoEdit.classList.add('fa-regular');
-    iconoEdit.classList.add('fa-pen-to-square');
+    /* ------------------------- Boton Eliminar Post ------------------------------*/
     // Icono delete
     const iconoDelete = createElement('i', 'icono_delete', sectionInteracion);
     iconoDelete.classList.add('fa-solid');
     iconoDelete.classList.add('fa-trash-can');
     iconoDelete.setAttribute('data-id', datos.id);
+
     iconoDelete.addEventListener('click', async (e) => {
       const idPost = e.target.dataset.id;
+      console.log(idPost);
+      console.log('elimar post: ');
       if (window.confirm('¿Estás seguro de borrar la publicación?')) {
-        deletePost(idPost);
-        window.location.reload();
+        await deletePost(idPost);
+        dibujarPosts();
       }
     });
-=======
->>>>>>> a014d37b1c968cd70b93b3eae1bf1550e09b330b
-  }
-  /* ------------------------- Funcion de likes --------------------------------*/
+  }// end function
+  /* ------------------------- Funcion de likes --------------------------------------*/
   const iconoLike = createElement('i', 'icono_like', sectionInteracion);
   iconoLike.classList.add('fa-heart');
   if (datos.likes.includes(localStorage.getItem('userId'))) {
@@ -151,7 +145,7 @@ function createPost(datos, index, publicaciones) {
     }
   });
 }
-
+/* ------------------------- Funcion de mostrar post en tiempo real ----------------------------*/
 // Funcion dibujar posts
 async function dibujarPosts() {
   const documentos = await traerPost();
@@ -167,7 +161,7 @@ async function dibujarPosts() {
     createPost(doc, index, publicaciones);
   });
 }
-
+/* ------------------------- Funcion del Post--------------------------------*/
 export function feedView(userDisplayName) {
   // Seccion container feed
   const sectionFeed = createElement('section', 'container_feed', '');
@@ -223,6 +217,7 @@ export function feedView(userDisplayName) {
   // Seccion mensaje de bienvenida
   const mensajeBienvenida = createElement('h2', 'mensaje_bienvenida', sectionPost);
   mensajeBienvenida.innerHTML = `Bienvenid@ ${userDisplayName}`;
+  console.log(userDisplayName);
 
   const divPost = createElement('div', 'post', sectionPost);
   const divInput = createElement('div', 'section_text', divPost);
@@ -247,15 +242,16 @@ export function feedView(userDisplayName) {
   sectionModal.innerHTML = `
                       <div class="modal__container">
                       <h2 class="modal__title">¡Publicar Imagen!</h2>
-                      <p class="modal__paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                      Deleniti nobis nisi quibusdam doloremque expedita quae ipsam accusamus quisquam quas,
-                       culpa tempora. Veniam consectetur deleniti maxime.</p>
+                      <p class="modal__paragraph">Comparerte contenido de series y pelicualas que mas
+                      te gusten, no olvides dar like a las publicaciones.</p>
                        <div class="modal__body">
                        <input class="modal__file" type="file" id="fileInput" accept="image/*">
                        <img class="uploaded-image" id="uploadedImage" src="" alt="" >
+                       </div>
+                       <div class="modal__buttons">
                        <button class="modal__upload" id="uploadButton">Publicar</button>
-                       <button class="modal__close">Cerrar Modal</button>
-                      </div>
+                       <button class="modal__close">Cerrar</button>
+                       </div>
                     </div>`;
   // boton cerrar modal
   const closeModal = sectionModal.querySelector('.modal__close');
@@ -321,6 +317,7 @@ export function feedView(userDisplayName) {
 
   // Modificar el evento del botón de cámara
   cargarImg.addEventListener('click', async () => {
+    console.log('publicar imagen');
     const valuePublicacion = inputPublicacion.value;
     const file = fileInput.files[0];
     if (file) {

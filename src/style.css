@@ -18,11 +18,9 @@ body {
   margin: auto;
   width: 90%;
   max-width: 1600px;
-  height: 100vh;
-  /* Ajusta la altura del contenedor principal, en este caso, ocupa toda la altura visible del viewport */
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 1fr;
-  /* Una fila con altura flexible */
   justify-items: center;
   /* Centra los elementos horizontalmente en el contenedor */
   align-items: center;
@@ -194,13 +192,25 @@ body {
 }
 
 /*----------------- Responsive design ------------------------*/
+@media (max-width: 1200px) {
+  .img-logo {
+    width:350px;
+  }
+  .container {
+    width: 100%;
+  }
+  
+.form-registro {
+  width: 90%;
+  }
+
+}
 
 @media (max-width: 768px) {
   .img-logo {
     content: url('img/logo-feed.png');
     width: 250px;
   }
-
   .container {
     width: 100%;
     grid-template-columns: 1fr;
@@ -211,6 +221,7 @@ body {
 
   .form-registro {
     width: 90%;
+    height: 550px;
   }
 }
 
@@ -329,6 +340,10 @@ body {
   height: 30px;
   margin: 10px;
 }
+.section-img{
+  display: flex;
+  
+}
 
 .img-logo1 {
   width: 450px;
@@ -366,11 +381,25 @@ body {
 
 /*----------------- Responsive design (LOGIN)------------------------*/
 
+@media (max-width: 1200px) {
+  .img-logo1 {
+    width:350px;
+  }
+  .mimain {
+    width: 100%;
+  }
+  
+  #formRegistro1 {
+  width: 90%;
+  }
+
+}
+
 @media (max-width: 768px) {
   .img-logo1 {
     content: url('img/logo-feed.png');
-    width: 250px;
-    margin: -67px;
+    width: 350px;
+    margin: 15px;
   }
 
   .mimain {
@@ -379,8 +408,8 @@ body {
 
   #formRegistro1 {
     width: 90%;
-    margin: 137px;
-    overflow: hidden;
+    height: 550px;
+    margin: 15px;
 
   }
 }
@@ -388,7 +417,6 @@ body {
 @media (min-width: 320px) and (max-width: 480px) {
   #formRegistro1 {
     width: 90%;
-    margin: 110px;
     padding: 10px;
     overflow: hidden;
 
@@ -503,7 +531,7 @@ body {
 
 .cerrar_sesion i {
   border-radius: 50%;
-  background-color: #505050;
+  background-color: #BB377D;
   color: #fff;
   padding: 8px;
   margin-right: 5px;
@@ -516,17 +544,23 @@ body {
   background-color: #4B4355;
   border-radius: 8px;
   margin: 10px 0;
+  padding: 15px;
   display: flex;
   flex-direction: column;
+}
+.section_button{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .section_text {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .boton_camara {
-  /* flex: 20%; */
+ display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;
@@ -540,7 +574,7 @@ body {
 }
 
 .boton_camara:hover {
-  color: black;
+  color: #BB377D;
 }
 
 
@@ -563,23 +597,31 @@ body {
   color: grey;
 }
 
-.mensaje_bienvenida,
-.name_user {
-  font-size: 23px;
+.mensaje_bienvenida {
+  font-size: 30px;
   font-family: "Poppins", sans-serif;
   color: white;
   margin: 10px 0px 0 10px;
+  text-align: center;
+}
+
+.name_user {
+  font-size: 28px;
+  font-family: "Poppins", sans-serif;
+  color: #8beafd;
+  margin: 10px 0px 0 10px;
+  text-align: center;
 }
 
 .button_publicar {
-  width: 25%;
+  width: 10rem;
   border-radius: 15px;
   background-color: #FBD3E9;
   border: none;
   padding: 7px 8px;
   font-size: 16px;
   color: #BB377D;
-  margin-left: 10px;
+  margin-right: 70px;
 }
 
 .button_publicar:hover {
@@ -603,32 +645,32 @@ body {
 }
 
 .like_edit_delete {
-  width: 100%;
   display: grid;
-  grid-template-columns: 4% 5% 4% 10%;
-  grid-template-rows: 100%; /* Añade esta línea para tener una sola fila */
-}
+  grid-template-columns: repeat(5, 1fr); /* Cuatro columnas igualmente distribuidas */
+  gap:1.5rem;
+  margin: auto;
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
 
+}
 
 .icono_like,
 .icono_edit,
 .icono_delete,
-.icono_cancelar{
-<<<<<<< HEAD
+.icono_cancelar {
   background-color: transparent; 
-=======
-  background-color: transparent;
->>>>>>> a014d37b1c968cd70b93b3eae1bf1550e09b330b
   font-size: 20px;
   color: #FBD3E9;
-  max-width: 65px;
-  height: 100%;
   padding: 5px 5px;
-  margin: 0 5px;
   cursor: pointer;
-  width: 95%;
-  margin-bottom: 10px;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  margin: auto;
 }
 
 
@@ -637,8 +679,39 @@ body {
   width: 22px;
   color: #FBD3E9;
   font-size: 23px;
-  z-index: 2; 
+  z-index: 1;
 }
+
+.text-container{
+  display: flex;
+  justify-content: center;
+}
+
+.textarea_publicacion {
+  width: 50%;
+  height: 50px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 20px;
+  border: none;
+  outline-style: none;
+  margin: 10px 0px 10px 10px;
+  padding: 10px 37px 10px 10px;
+  text-align: left;
+  background-color: #4B4355;
+
+}
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+.uploaded-image{
+  width: 20rem; 
+  height: 15rem;
+  display: none;
+}
+/*#8beafd azul logo*/
 
 /*--------Responsive (Feed)--------*/
 
@@ -647,23 +720,30 @@ body {
     width: 200px;
     height: 50px;
   }
-
-  section.like_edit_delete {
-    grid-template-columns: 5% 7% 5% 10%;
+  .mensaje_bienvenida {
+    font-size: 20px;
   }
+  .section_text {
+    justify-content: flex-start;
+  }
+  .feed_new_post {
+    width: 90%;
+  }
+  .section_button{
+    justify-content: flex-start;
+  }
+  .button_publicar {
+    margin-left: 10px;
+  }
+  .textarea_publicacion{
+    width: 80%;
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+  }
+  
 }
 
-@media (min-width: 350px) and (max-width:760px){
-  section.like_edit_delete {
-    grid-template-columns: 11% 11% 10% 10%;
-  }
-}
-
-@media (max-width: 330px){
-  section.like_edit_delete {
-    grid-template-columns: 13% 13% 13% 10%;
-  }
-}
 /* -------Estilos modal imagenes--------*/
 
 .modal{
@@ -707,30 +787,45 @@ body {
 
 .modal__title{
   font-size: 2.5rem;
+  color: #BB377D;
+}
+.modal__paragraph{
+  text-align: justify;
+ 
+}
+.modal__body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal__buttons{
+  display: flex;
+  flex-direction: row;
+
 }
 .modal__upload,
 .modal__close{
-  display: flex;
+  width: 50%;
+  height: 50px;
   text-decoration: none;
   color: #fff;
-  background-color: #F26250;
+  background-color: #8beafd;
   padding: 1em 3em;
   border: 1px solid ;
   border-radius: 6px;
   font-weight: 300;
+  font-family: "Poppins", sans-serif;
   transition: background-color .3s;
 }
 
 .modal__close:hover{
-  color: #F26250;
+  color: #8beafd;
   background-color: #fff;
 }
 
 .modal__upload:hover{
-  color: #F26250;
+  color: #8beafd;
   background-color: #fff;
 }
-.uploaded-image{
-  width: 60px; 
-  height: 60px;
-}
+
