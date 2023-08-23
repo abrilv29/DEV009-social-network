@@ -6,6 +6,8 @@ import {
   guardarPost, traerPost, addLiked, removeLiked, editPost, saveEditedPost, deletePost,
 } from '../controller/feedController';
 import { uploadImg, getUrl } from '../controller/storageController';
+import logoFeed from '../img/logo-feed.png';
+import perfilUser from '../img/perfil-usuario.jpg';
 
 /* ------------------------- Creacion del Post --------------------------------*/
 // Funcion crear publicaciones
@@ -169,7 +171,7 @@ export function feedView(userDisplayName) {
   const sectionHeader = createElement('section', 'section_header', sectionFeed);
   const divLogo = createElement('div', 'div_feed_logo', sectionHeader);
   const imagenLogo = createElement('img', 'feed_logo', divLogo);
-  imagenLogo.src = '../img/logo-feed.png';
+  imagenLogo.src = logoFeed;
 
   function menuToggle() {
     const toggleMenu = document.querySelector('.info-perfil');
@@ -183,7 +185,7 @@ export function feedView(userDisplayName) {
   divImg.onclick = menuToggle;
 
   // Supongamos que obtienes la URL de la imagen en las siguientes situaciones
-  const userImageUrlNormal = '../img/perfil-usuario.jpg';
+  const userImageUrlNormal = perfilUser;
   const imagenPerfil = createElement('img', 'imagen-perfil', divImg);
 
   // Obtén la imagen de perfil del LocalStorage (si existe)

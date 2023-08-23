@@ -1,5 +1,6 @@
 import { createElement } from '../utils/utils';
 import { loginUser, loginWithGoogle } from '../controller/loginController.js';
+import logoPrincipal from '../img/logo-principal.png';
 
 export function loginView() {
   const content = document.createElement('main');
@@ -10,7 +11,7 @@ export function loginView() {
 
   // Crear el elemento <img> y configurar sus atributos src y alt
   const imgElement = createElement('img', 'img-logo1', sectionImgElement);
-  imgElement.src = 'img/logo-principal.png';
+  imgElement.src = logoPrincipal;
   imgElement.alt = 'logo FandomFlix';
 
   // Crear el elemento <form> con el identificador "formRegistro1"
