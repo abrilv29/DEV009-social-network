@@ -1,7 +1,7 @@
 /* eslint-disable no-inner-declarations */
 import { createElement } from '../utils/utils';
 import {
-  guardarPost, traerpost, addLiked, removeLiked, editPost, saveEditedPost
+  guardarPost, traerPost, addLiked, removeLiked, editPost, saveEditedPost, deletePost,
 } from '../controller/feedController';
 
 // Funcion crear publicaciones
@@ -17,7 +17,6 @@ export function createPost(datos, index, publicaciones) {
   const sectionInteracion = createElement('section', 'like_edit_delete', divPublicacion);
   // Verficamos si el autor de la publicacion es el mismo del Local Storage
   if (datos.userId === localStorage.getItem('userId')) {
-
     /* --------------------- Boton Editar Post ----------------*/
     // Bonton edit
     const botonEdit = createElement('button', 'icono_edit', sectionInteracion);
@@ -97,7 +96,6 @@ export function createPost(datos, index, publicaciones) {
         window.location.reload();
       }
     });
-
   }
   /* ------------------------- Funcion de likes --------------------------------*/
   const iconoLike = createElement('i', 'icono_like', sectionInteracion);

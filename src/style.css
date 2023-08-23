@@ -614,9 +614,7 @@ body {
 .icono_edit,
 .icono_delete,
 .icono_cancelar{
-  background-color: transparent;
-
-.icono_delete {
+  background-color: transparent; 
   font-size: 20px;
   color: #FBD3E9;
   max-width: 65px;
@@ -635,7 +633,6 @@ body {
 
 
 .contador_like {
-  edit-post
   position: relative;
   width: 22px;
   color: #FBD3E9;
