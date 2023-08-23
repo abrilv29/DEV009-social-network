@@ -69,7 +69,7 @@ export async function saveEditedPost(idPost, editedContent) {
   await updateDoc(documentoPosts, {
     post: editedContent,
   });
-
+}
 
 export async function deletePost(idPost) {
   try {
