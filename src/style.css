@@ -526,7 +526,7 @@ body {
 }
 
 .boton_camara {
-  flex: 20%;
+  /* flex: 20%; */
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;
@@ -615,13 +615,14 @@ body {
 .icono_delete,
 .icono_cancelar{
   background-color: transparent;
+
+.icono_delete {
   font-size: 20px;
   color: #FBD3E9;
   max-width: 65px;
   height: 100%;
   padding: 5px 5px;
   margin: 0 5px;
-  justify-content: center;
   cursor: pointer;
   width: 95%;
   height: auto;
@@ -634,6 +635,7 @@ body {
 
 
 .contador_like {
+  edit-post
   position: relative;
   width: 22px;
   color: #FBD3E9;
