@@ -2,8 +2,9 @@
 import { initializeApp } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
+// Importar el servicio de almacenamiento
+
 const firebaseConfig = {
   apiKey: 'AIzaSyAN8tAuK0QMaUOxSSF4aHnAHPonr8IZq_8',
   authDomain: 'bd-socialnetwork.firebaseapp.com',
