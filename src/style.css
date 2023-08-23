@@ -614,7 +614,11 @@ body {
 .icono_edit,
 .icono_delete,
 .icono_cancelar{
+<<<<<<< HEAD
   background-color: transparent; 
+=======
+  background-color: transparent;
+>>>>>>> a014d37b1c968cd70b93b3eae1bf1550e09b330b
   font-size: 20px;
   color: #FBD3E9;
   max-width: 65px;
@@ -623,10 +627,6 @@ body {
   margin: 0 5px;
   cursor: pointer;
   width: 95%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   margin-bottom: 10px;
   border: none;
 }
@@ -663,4 +663,74 @@ body {
   section.like_edit_delete {
     grid-template-columns: 13% 13% 13% 10%;
   }
+}
+/* -------Estilos modal imagenes--------*/
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #111111bd;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s .9s;
+  --transform: translateY(-100vh);
+  --transition: transform .8s;
+}
+
+.modal--show{
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .6s;
+  --transform: translateY(0);
+  --transition: transform .8s .8s;
+}
+
+.modal__container{
+  margin: 120px auto;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90%;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 3em 2.5em;
+  display: grid;
+  gap: 1em;
+  place-items: center;
+  grid-auto-columns: 100%;
+  transform: var(--transform);
+  transition:var(--transition);
+}
+
+.modal__title{
+  font-size: 2.5rem;
+}
+.modal__upload,
+.modal__close{
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  background-color: #F26250;
+  padding: 1em 3em;
+  border: 1px solid ;
+  border-radius: 6px;
+  font-weight: 300;
+  transition: background-color .3s;
+}
+
+.modal__close:hover{
+  color: #F26250;
+  background-color: #fff;
+}
+
+.modal__upload:hover{
+  color: #F26250;
+  background-color: #fff;
+}
+.uploaded-image{
+  width: 60px; 
+  height: 60px;
 }
