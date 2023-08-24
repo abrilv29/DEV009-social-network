@@ -240,7 +240,7 @@ export function feedView(userDisplayName) {
   sectionModal.innerHTML = `
                       <div class="modal__container">
                       <h2 class="modal__title">¡Publicar Imagen!</h2>
-                      <p class="modal__paragraph">Comparerte contenido de series y pelicualas que mas
+                      <p class="modal__paragraph">Comparte contenido de series y pelicualas que mas
                       te gusten, no olvides dar like a las publicaciones.</p>
                        <div class="modal__body">
                        <input class="modal__file" type="file" id="fileInput" accept="image/*">

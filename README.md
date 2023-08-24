@@ -36,7 +36,7 @@ Una vez que hayas iniciado sesión, justo al comienzo de la página, encontrará
 Además, promovemos la interacción y la conexión entre los usuarios. Puedes darle "like" a cualquier publicación que te guste, lo que permite mostrar tu aprecio por las recomendaciones de otros y crear una comunidad cinéfila vibrante y activa.
 
 La siguiente imagen ilustra cómo se ve esta experiencia en nuestra plataforma:
-![pagina-de-inico](src/img/readme/feed.png)
+![pagina-de-inico](src/img/readme/muro.png)
 
 ### El diseño es responsive por lo cual se adapta a diferentes tamaños de pantalla.
 A continuacion mostrare como se ve en móvil
