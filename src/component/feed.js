@@ -240,7 +240,7 @@ export function feedView(userDisplayName) {
   sectionModal.innerHTML = `
                       <div class="modal__container">
                       <h2 class="modal__title">¡Publicar Imagen!</h2>
-                      <p class="modal__paragraph">Comparte contenido de series y pelicualas que mas
+                      <p class="modal__paragraph">Comparerte contenido de series y pelicualas que mas
                       te gusten, no olvides dar like a las publicaciones.</p>
                        <div class="modal__body">
                        <input class="modal__file" type="file" id="fileInput" accept="image/*">
@@ -258,7 +258,6 @@ export function feedView(userDisplayName) {
     e.preventDefault();
     sectionModal.classList.remove('modal--show');
     sectionModal.style.display = 'none';
-    console.log('cerrar modal');
   });
 
   function clearSelectedImage() {
@@ -315,7 +314,6 @@ export function feedView(userDisplayName) {
 
   // Modificar el evento del botón de cámara
   cargarImg.addEventListener('click', async () => {
-    console.log('publicar imagen');
     const valuePublicacion = inputPublicacion.value;
     const file = fileInput.files[0];
     if (file) {
