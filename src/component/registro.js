@@ -2,6 +2,7 @@ import { createElement } from '../utils/utils';
 import { conexionUser } from '../controller/registroController';
 import { loginWithGoogle } from '../controller/loginController.js';
 import logoPrincipal from '../img/logo-principal.png';
+import botonCuenta from '../img/google.png';
 
 export function registroView() {
   // Seccion principal del registro
@@ -58,7 +59,7 @@ export function registroView() {
   mensajeRegreso.textContent = 'Ingresa aquí';
   // seccion del boton de registro cuenta de Google
   const btnGoogle = createElement('button', 'btnGoogle', formRegistro);
-  btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
+  btnGoogle.innerHTML = `<img src="${botonCuenta}" alt="Google"/> Google`;
   // mensajes de error del registro cuenta
   const errorContainer = createElement('div', '', formRegistro);
   errorContainer.setAttribute('id', 'error-container');

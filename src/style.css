@@ -283,22 +283,6 @@ body {
   margin: 5px;
   cursor: pointer;
 }
-
-.mensajeOlvidasteContraseña {
-  color: #fff;
-  font-size: 1em;
-  margin: 5px;
-}
-
-.recuperala {
-  color: #BB377D;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 5px;
-  cursor: pointer;
-}
-
-
 .btnLogin {
   width: 70%;
   height: 50px;
@@ -317,29 +301,6 @@ body {
   background: #BB377D;
   box-shadow: 0px 4px 35px -5px #BB377D;
 }
-
-#formRegistro1 .label-nombre,
-.label-contraseña {
-  font-size: 20px;
-}
-
-#formRegistro1.label-nombre,
-.label-contraseña {
-  margin-top: 15px;
-}
-
-#formRegistro1 .input-nombre,
-.input-contraseña {
-  width: 70%;
-  height: 30px;
-
-}
-
-.button {
-  width: 50%;
-  height: 30px;
-  margin: 10px;
-}
 .section-img{
   display: flex;
   
@@ -347,11 +308,6 @@ body {
 
 .img-logo1 {
   width: 450px;
-}
-
-.p {
-  font-size: 12px;
-  margin-top: 17px;
 }
 
 #formRegistro1 .btnGoogle {
@@ -560,7 +516,7 @@ body {
 }
 
 .boton_camara {
- display: flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;
@@ -578,8 +534,7 @@ body {
 }
 
 
-.feed_new_post,
-.textarea_publicacion {
+.feed_new_post{
   width: 80%;
   height: 50px;
   background-color: #fff;
@@ -647,9 +602,7 @@ body {
 .like_edit_delete {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Cuatro columnas igualmente distribuidas */
-  gap:1.5rem;
   margin: auto;
-  justify-items: center;
   align-items: center;
   padding: 10px;
 
@@ -675,11 +628,9 @@ body {
 
 
 .contador_like {
-  position: relative;
   width: 22px;
   color: #FBD3E9;
   font-size: 23px;
-  z-index: 1;
 }
 
 .text-container{

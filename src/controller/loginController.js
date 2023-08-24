@@ -35,7 +35,6 @@ export const loginUser = async (email, password) => {
     localStorage.setItem('email', emailToken);
     const tokenSession = userCredential.user.accessToken;
     sessionStorage.setItem('userToken', tokenSession);
-    console.log(tokenSession);
     const userName = userCredential.user.displayName;
     return userName; // Devolvemos el nombre de usuario
     // ...
@@ -58,7 +57,6 @@ export const loginWithGoogle = () => {
       localStorage.setItem('userImage', user.photoURL);
       localStorage.setItem('userDisplayName', user.displayName);
       localStorage.setItem('userGmail', user.email);
-
       window.location.href = `${window.location.origin}/feed`;
       console.log(token, user);
     })

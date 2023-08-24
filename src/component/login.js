@@ -1,6 +1,7 @@
 import { createElement } from '../utils/utils';
 import { loginUser, loginWithGoogle } from '../controller/loginController.js';
 import logoPrincipal from '../img/logo-principal.png';
+import botonCuenta from '../img/google.png';
 
 export function loginView() {
   const content = document.createElement('main');
@@ -50,7 +51,7 @@ export function loginView() {
   // seccion del boton de registro cuenta de Google
   const btnGoogle = createElement('button', 'btnGoogle', formElement);
   btnGoogle.id = 'btnGoogle';
-  btnGoogle.innerHTML = '<img src="/img/google.png" alt="cuenta gmail">Google';
+  btnGoogle.innerHTML = `<img src="${botonCuenta}" alt="Google"/> Google`;
   const welcomeMessageElement = createElement('div', '', formElement);
   welcomeMessageElement.id = 'welcomeMessage';
 
@@ -75,7 +76,6 @@ export function loginView() {
     try {
       const user = await loginUser(email, password);
       localStorage.setItem('userDisplayName', user); // Almacenar el nombre de usuario en el LocalStorage
-      console.log('userDisplayName');
       window.location.href = `${window.location.origin}/feed`; // Redireccionar a la página del feed;
     } catch (error) {
       console.log(error);

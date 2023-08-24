@@ -102,8 +102,6 @@ function createPost(datos, index, publicaciones) {
 
     iconoDelete.addEventListener('click', async (e) => {
       const idPost = e.target.dataset.id;
-      console.log(idPost);
-      console.log('elimar post: ');
       if (window.confirm('¿Estás seguro de borrar la publicación?')) {
         await deletePost(idPost);
         dibujarPosts();
@@ -209,7 +207,6 @@ export function feedView(userDisplayName) {
 
   // Agregar evento click al botón 'cerrarSesion'
   cerrarSesion.addEventListener('click', async () => {
-    console.log('Botón de cerrar sesión clickeado');
     localStorage.clear();
     window.location.href = `${window.location.origin}/`;
   });
@@ -219,7 +216,6 @@ export function feedView(userDisplayName) {
   // Seccion mensaje de bienvenida
   const mensajeBienvenida = createElement('h2', 'mensaje_bienvenida', sectionPost);
   mensajeBienvenida.innerHTML = `Bienvenid@ ${userDisplayName}`;
-  console.log(userDisplayName);
 
   const divPost = createElement('div', 'post', sectionPost);
   const divInput = createElement('div', 'section_text', divPost);
