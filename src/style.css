@@ -285,10 +285,6 @@ body {
   margin: 5px;
   cursor: pointer;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 04eab14eab1ff54e47104c63d1913d1a2139d701
 .btnLogin {
   width: 70%;
   height: 50px;
@@ -307,21 +303,8 @@ body {
   background: #BB377D;
   box-shadow: 0px 4px 35px -5px #BB377D;
 }
-<<<<<<< HEAD
 .section-img{
-=======
-
-#formRegistro1 .input-nombre,
-.input-contraseña {
-  width: 70%;
-  height: 30px;
-
-}
-
-.section-img {
->>>>>>> 04eab14eab1ff54e47104c63d1913d1a2139d701
   display: flex;
-
 }
 
 .img-logo1 {
@@ -554,11 +537,7 @@ body {
 }
 
 
-<<<<<<< HEAD
 .feed_new_post{
-=======
-.feed_new_post {
->>>>>>> 04eab14eab1ff54e47104c63d1913d1a2139d701
   width: 80%;
   height: 50px;
   background-color: #fff;
@@ -625,13 +604,7 @@ body {
 
 .like_edit_delete {
   display: grid;
-<<<<<<< HEAD
   grid-template-columns: repeat(5, 1fr); /* Cuatro columnas igualmente distribuidas */
-=======
-  grid-template-columns: repeat(5, 1fr);
-  /* Cuatro columnas igualmente distribuidas */
-  gap: 1.5rem;
->>>>>>> 04eab14eab1ff54e47104c63d1913d1a2139d701
   margin: auto;
   align-items: center;
   padding: 10px;
