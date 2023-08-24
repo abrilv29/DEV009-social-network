@@ -41,7 +41,7 @@ La siguiente imagen ilustra cómo se ve esta experiencia en nuestra plataforma:
 ### El diseño es responsive por lo cual se adapta a diferentes tamaños de pantalla.
 A continuacion mostrare como se ve en móvil
 
-![login](src/img/readme/loginmovil.png) ![registro](src/img/readme/registromovil.png) ![pagina-de-inico](src/img/readme/muromovil.png)
+![login](src/img/readme/loginmovil.png) ![registro](src/img/readme/registromovil.png) ![pagina-de-inico](src/img/readme/feedmovil.png)
 
 ## 2. Investigación de Experiencia de Usuario (UX) 🧐
 
