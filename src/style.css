@@ -194,14 +194,15 @@ body {
 /*----------------- Responsive design ------------------------*/
 @media (max-width: 1200px) {
   .img-logo {
-    width:350px;
+    width: 350px;
   }
+
   .container {
     width: 100%;
   }
-  
-.form-registro {
-  width: 90%;
+
+  .form-registro {
+    width: 90%;
   }
 
 }
@@ -211,6 +212,7 @@ body {
     content: url('img/logo-feed.png');
     width: 250px;
   }
+
   .container {
     width: 100%;
     grid-template-columns: 1fr;
@@ -284,21 +286,6 @@ body {
   cursor: pointer;
 }
 
-.mensajeOlvidasteContraseña {
-  color: #fff;
-  font-size: 1em;
-  margin: 5px;
-}
-
-.recuperala {
-  color: #BB377D;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 5px;
-  cursor: pointer;
-}
-
-
 .btnLogin {
   width: 70%;
   height: 50px;
@@ -318,16 +305,6 @@ body {
   box-shadow: 0px 4px 35px -5px #BB377D;
 }
 
-#formRegistro1 .label-nombre,
-.label-contraseña {
-  font-size: 20px;
-}
-
-#formRegistro1.label-nombre,
-.label-contraseña {
-  margin-top: 15px;
-}
-
 #formRegistro1 .input-nombre,
 .input-contraseña {
   width: 70%;
@@ -335,23 +312,13 @@ body {
 
 }
 
-.button {
-  width: 50%;
-  height: 30px;
-  margin: 10px;
-}
-.section-img{
+.section-img {
   display: flex;
-  
+
 }
 
 .img-logo1 {
   width: 450px;
-}
-
-.p {
-  font-size: 12px;
-  margin-top: 17px;
 }
 
 #formRegistro1 .btnGoogle {
@@ -383,14 +350,15 @@ body {
 
 @media (max-width: 1200px) {
   .img-logo1 {
-    width:350px;
+    width: 350px;
   }
+
   .mimain {
     width: 100%;
   }
-  
+
   #formRegistro1 {
-  width: 90%;
+    width: 90%;
   }
 
 }
@@ -451,8 +419,8 @@ body {
 
 /*-------------Parte de al darle click al perfil----------*/
 
-.perfil { 
-  margin:auto;
+.perfil {
+  margin: auto;
   position: relative;
 }
 
@@ -548,7 +516,8 @@ body {
   display: flex;
   flex-direction: column;
 }
-.section_button{
+
+.section_button {
   display: flex;
   justify-content: flex-end;
 }
@@ -560,7 +529,7 @@ body {
 }
 
 .boton_camara {
- display: flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 25px;
@@ -578,8 +547,7 @@ body {
 }
 
 
-.feed_new_post,
-.textarea_publicacion {
+.feed_new_post {
   width: 80%;
   height: 50px;
   background-color: #fff;
@@ -646,8 +614,9 @@ body {
 
 .like_edit_delete {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Cuatro columnas igualmente distribuidas */
-  gap:1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  /* Cuatro columnas igualmente distribuidas */
+  gap: 1.5rem;
   margin: auto;
   justify-items: center;
   align-items: center;
@@ -659,7 +628,7 @@ body {
 .icono_edit,
 .icono_delete,
 .icono_cancelar {
-  background-color: transparent; 
+  background-color: transparent;
   font-size: 20px;
   color: #FBD3E9;
   padding: 5px 5px;
@@ -682,7 +651,7 @@ body {
   z-index: 1;
 }
 
-.text-container{
+.text-container {
   display: flex;
   justify-content: center;
 }
@@ -701,16 +670,18 @@ body {
   background-color: #4B4355;
 
 }
-.image-container{
+
+.image-container {
   display: flex;
   justify-content: center;
 }
 
-.uploaded-image{
-  width: 20rem; 
+.uploaded-image {
+  width: 20rem;
   height: 15rem;
   display: none;
 }
+
 /*#8beafd azul logo*/
 
 /*--------Responsive (Feed)--------*/
@@ -720,33 +691,39 @@ body {
     width: 200px;
     height: 50px;
   }
+
   .mensaje_bienvenida {
     font-size: 20px;
   }
+
   .section_text {
     justify-content: flex-start;
   }
+
   .feed_new_post {
     width: 90%;
   }
-  .section_button{
+
+  .section_button {
     justify-content: flex-start;
   }
+
   .button_publicar {
     margin-left: 10px;
   }
-  .textarea_publicacion{
+
+  .textarea_publicacion {
     width: 80%;
     padding: 8px;
     margin: 8px;
     text-align: center;
   }
-  
+
 }
 
 /* -------Estilos modal imagenes--------*/
 
-.modal{
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -761,7 +738,7 @@ body {
   --transition: transform .8s;
 }
 
-.modal--show{
+.modal--show {
   opacity: 1;
   pointer-events: unset;
   transition: opacity .6s;
@@ -769,7 +746,7 @@ body {
   --transition: transform .8s .8s;
 }
 
-.modal__container{
+.modal__container {
   margin: 120px auto;
   width: 90%;
   max-width: 600px;
@@ -782,50 +759,53 @@ body {
   place-items: center;
   grid-auto-columns: 100%;
   transform: var(--transform);
-  transition:var(--transition);
+  transition: var(--transition);
 }
 
-.modal__title{
+.modal__title {
   font-size: 2.5rem;
   color: #BB377D;
 }
-.modal__paragraph{
+
+.modal__paragraph {
   text-align: justify;
- 
+
 }
-.modal__body{
+
+.modal__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.modal__buttons{
+
+.modal__buttons {
   display: flex;
   flex-direction: row;
 
 }
+
 .modal__upload,
-.modal__close{
+.modal__close {
   width: 50%;
   height: 50px;
   text-decoration: none;
   color: #fff;
-  background-color: #8beafd;
+  background-color: #5daab9;
   padding: 1em 3em;
-  border: 1px solid ;
+  border: 1px solid;
   border-radius: 6px;
   font-weight: 300;
   font-family: "Poppins", sans-serif;
   transition: background-color .3s;
 }
 
-.modal__close:hover{
-  color: #8beafd;
+.modal__close:hover {
+  color: #5daab9;
   background-color: #fff;
 }
 
-.modal__upload:hover{
-  color: #8beafd;
+.modal__upload:hover {
+  color: #5daab9;
   background-color: #fff;
 }
-
