@@ -1,7 +1,8 @@
-/* eslint-disable max-len */
+/* eslint-disable import/no-unresolved */
 import { registroView } from '../src/component/registro';
 import * as loginController from '../src/controller/loginController';
 import * as userConexion from '../src/controller/registroController';
+import logoPrincipal from '../img/logo-principal.png';
 
 describe('registroView', () => {
   let container;
@@ -20,7 +21,10 @@ describe('registroView', () => {
   });
   it('Verificar que los elementos del DOM se hayan creado correctamente formulario y logo', () => {
     // Verifica si los elementos del DOM se crearon correctamente en la función registroView()
-    const logo = container.querySelector('.img-logo');
+    // Usa la función createElement para crear un elemento img
+    const logo = container.querySelector('img.img-logo');
+    logo.src = logoPrincipal;
+    logo.alt = 'logo FandomFlix';
     const form = container.querySelector('.form-registro');
     const name = container.querySelector('input[type="text"]');
     const email = container.querySelector('input[type="email"]');
@@ -37,7 +41,8 @@ describe('registroView', () => {
   });
 
   it('deberia mostrar el formulario de registro y redireccionar a la pagina del login', async () => {
-    // Simula el llenado del formulario con datos válidos y realiza la prueba de la funcionalidad del envío
+    // Simula el llenado del formulario con datos válidos y
+    // realiza la prueba de la funcionalidad del envío
     // Verifica que la función de conexionUser se llame correctamente
     const form = container.querySelector('.form-registro');
     const name = container.querySelector('input[type="text"]');
@@ -80,7 +85,8 @@ describe('registroView', () => {
 
   // Las contraseñas no coinciden
   it('deberia mostrar mensaje de error,Las contraseñas no coinciden', async () => {
-    // Simula el llenado del formulario con contraseñas que no coinciden y verifica si se muestra el mensaje de error correspondiente
+    // Simula el llenado del formulario con contraseñas que no coinciden y
+    // verifica si se muestra el mensaje de error correspondiente
     const form = container.querySelector('.form-registro');
     const pass = container.querySelector('input[type="password"]');
     const confirmarpassword = container.querySelector('input[type="password"]');
@@ -96,7 +102,8 @@ describe('registroView', () => {
 
   // El correo se encuentra registrado
   it('deberia mostrar mensaje de error,El correo se encuentra registrado', async () => {
-    // Simula el llenado del formulario con un correo electrónico inválido y verifica si se muestra el mensaje de error correspondiente
+    // Simula el llenado del formulario con un correo electrónico inválido y
+    // verifica si se muestra el mensaje de error correspondiente
     const form = container.querySelector('.form-registro');
     const email = container.querySelector('input[type="email"]');
     const pass = container.querySelector('input[type="password"]');

@@ -365,9 +365,6 @@ export function feedView(userDisplayName) {
       };
       inputPublicacion.value = '';
       await guardarPost(datos);
-
-      const sectionPublicaciones = document.querySelector('.section_publicaciones');
-      sectionPublicaciones.innerHTML = '';
       dibujarPosts();
     }
   });

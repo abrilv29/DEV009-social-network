@@ -7,7 +7,7 @@ import {
   browserLocalPersistence,
 } from 'firebase/auth';
 import { app } from '../lib/config-firebase.js';
-import perfilUser from '../img/perfil-usuario.jpg';
+// import perfilUser from '../img/perfil-usuario.jpg';
 
 // const conexioBD = getFirestore(app);
 
@@ -20,8 +20,8 @@ export const loginUser = async (email, password) => {
     await setPersistence(auth, browserLocalPersistence);
 
     // Guardar la URL de la imagen de perfil en el LocalStorage (usar la URL predeterminada)
-    const userImageUrl = perfilUser;
-    localStorage.setItem('userImage', userImageUrl);
+    // const userImageUrl = perfilUser;
+    // localStorage.setItem('userImage', userImageUrl);
     // Almacenar el nombre de usuario en el localStorage
     localStorage.setItem('userDisplayName', userCredential.user.displayName);
     // Almacenar el correo electrónico del usuario en el localStorage

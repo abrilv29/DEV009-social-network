@@ -15,7 +15,7 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage --env=jsdom --watch",
+    "test": "jest --coverage --env=jsdom ",
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",
@@ -28,6 +28,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.1",
     "jsdom": "^22.1.0",
     "regenerator-runtime": "^0.13.1",
@@ -45,5 +46,11 @@
   },
   "dependencies": {
     "firebase": "^10.1.0"
-  }
+  },
+  
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png)$": "<rootDir>/mocks/fileMocks.js"
+    }
+  }  
 }

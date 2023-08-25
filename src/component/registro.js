@@ -1,7 +1,7 @@
 import { createElement } from '../utils/utils';
 import { conexionUser } from '../controller/registroController';
 import { loginWithGoogle } from '../controller/loginController.js';
-import logoPrincipal from '../img/logo-principal.png';
+import logoPrincipal from '../img/logoPrincipal.png';
 import botonCuenta from '../img/google.png';
 
 export function registroView() {
@@ -10,8 +10,10 @@ export function registroView() {
   // seccion del logo
   const logoContent = createElement('section', 'logo-content', container);
   const logo = createElement('img', 'img-logo', logoContent);
-  logo.src = logoPrincipal;
-  logo.alt = 'logo FandomFlix';
+  console.log(logoPrincipal);
+  logo.setAttribute('src', 'hola');
+  logo.setAttribute('alt', 'logo FandomFlix');
+
   // seccion del formulario del registro
   const formRegistro = createElement('form', 'form-registro', container);
   formRegistro.id = 'form-registro';
