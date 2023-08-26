@@ -11,7 +11,7 @@ export function registroView() {
   const logoContent = createElement('section', 'logo-content', container);
   const logo = createElement('img', 'img-logo', logoContent);
   console.log(logoPrincipal);
-  logo.setAttribute('src', 'hola');
+  logo.setAttribute('src', logoPrincipal);
   logo.setAttribute('alt', 'logo FandomFlix');
 
   // seccion del formulario del registro
