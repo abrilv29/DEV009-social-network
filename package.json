@@ -6,8 +6,8 @@
   "main": "src/index.html",
   "keywords": [
     "javascript",
-    "firebase",
-    "jest"
+    "jest",
+    "firebase"
   ],
   "license": "MIT",
   "scripts": {
